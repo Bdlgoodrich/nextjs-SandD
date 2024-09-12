@@ -32,7 +32,7 @@ async function seedUsers() {
 async function seedSkills() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS invoices (
-      id SERIAL NOT NULL,
+      id SERIAL,
       name VARCHAR(255) NOT NULL,
       description TEXT DEFAULT 'tbd',
       apparatus VARCHAR(255) DEFAULT 'tbd',
