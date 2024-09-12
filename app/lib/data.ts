@@ -28,7 +28,7 @@ export async function fetchApparatuses() {
     throw new Error('Failed to fetch class list.');
   }
 }
-
+/*
 export async function fetchLatestInvoices() {
   try {
     const data = await sql<LatestInvoiceRaw>`
@@ -215,4 +215,4 @@ export async function fetchFilteredCustomers(query: string) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
   }
-}
+}*/
