@@ -1,30 +1,31 @@
 import { sql } from '@vercel/postgres';
 import {
-  CustomerField,
-  CustomersTableType,
-  InvoiceForm,
-  InvoicesTable,
-  LatestInvoiceRaw,
-  Revenue,
+  User,
+  Skill,
+  Drill
 } from './definitions';
-import { formatCurrency } from './utils';
 
-export async function fetchRevenue() {
+export async function fetchClasses() {
   try {
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
-
-    const data = await sql<Revenue>`SELECT * FROM revenue`;
-
-    // console.log('Data fetch completed after 3 seconds.');
+    const data = await sql<String>`SELECT * FROM classes`;
 
     return data.rows;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch revenue data.');
+    throw new Error('Failed to fetch class list.');
+  }
+}
+
+export async function fetchApparatuses() {
+  try {
+
+    const data = await sql<String>`SELECT * FROM apparatuses`;
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch class list.');
   }
 }
 
@@ -84,7 +85,7 @@ export async function fetchCardData() {
 }
 
 const ITEMS_PER_PAGE = 6;
-export async function fetchFilteredInvoices(
+export async function fetchFilteredSkills(
   query: string,
   currentPage: number,
 ) {

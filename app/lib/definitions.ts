@@ -10,10 +10,11 @@ export type User = {
 };
 
 export type Skill = {
+  id: number;
   name: string;
   description: string;
-  apparatus: string[];
-  class: string[];
+  apparatus: string;
+  class: string;
 };
 
 export type Drill = {
@@ -21,6 +22,7 @@ export type Drill = {
   skill: string;
   description: string;
   instructions: string;
-  apparatus: string[];
-  equipment: string[];
+  apparatus: string;
+  equipment: string;
+  purpose: "learning" | "improving";
 };
