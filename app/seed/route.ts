@@ -101,7 +101,7 @@ async function seedClasses() {
 
 async function seedApparatuses() {
   await client.sql`
-    CREATE TABLE IF NOT EXISTS classes (
+    CREATE TABLE IF NOT EXISTS apparatuses (
       apparatus VARCHAR(255) NOT NULL UNIQUE
     );
   `;
