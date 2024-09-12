@@ -2,24 +2,24 @@
 // It describes the shape of the data, and what data type each property should accept.
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
-export type User = {
-  id: string;
+export type Skill = {
   name: string;
-  email: string;
-  password: string;
+  apparatus: string[];
+  class: Class[];
+  drills: Drill[];
 };
 
-export type Customer = {
-  id: string;
+export type Drill = {
+  id: number;
+  description: string;
+  apparatus: string[];
+  equipment: string[];
+};
+
+export type Class = {
   name: string;
 };
 
-export type Invoice = {
-  id: string;
-  customer_id: string;
-  amount: number;
-  date: string;
-};
 
 
 export type LatestInvoice = {
