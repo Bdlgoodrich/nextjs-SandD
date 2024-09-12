@@ -1,147 +1,111 @@
-// This file contains placeholder data that you'll be replacing with real data in the Data Fetching chapter:
-// https://nextjs.org/learn/dashboard-app/fetching-data
+
 const users = [
   {
-    id: '410544b2-4001-4271-9855-fec4b6a6442a',
-    name: 'User',
-    email: 'user@nextmail.com',
-    password: '123456',
+    id: 'admin',
+    name: 'Admin',
+    email: 'mgaf@email.com',
+    password: 'SandDMGAF',
   },
 ];
 
-const customers = [
+const classes = ['Mini Ninja', 'Mighty Ninja', `Women's Gymnastics`, `Men's Gymnastics`, 'Tumbling',];
+
+const skills = [
   {
-    id: 'd6e15727-9fe1-4961-8c5b-ea44a9bd81aa',
-    name: 'Evil Rabbit',
-    email: 'evil@rabbit.com',
-    image_url: '/customers/evil-rabbit.png',
+    name: 'forward roll',
+    description: "To be added later",
+    apparatus: ['floor', 'beam'],
+    class: ['Mini Ninja', 'Mighty Ninja', `Women's Gymnastics`, `Men's Gymnastics`, 'Tumbling',],
   },
   {
-    id: '3958dc9e-712f-4377-85e9-fec4b6a6442a',
-    name: 'Delba de Oliveira',
-    email: 'delba@oliveira.com',
-    image_url: '/customers/delba-de-oliveira.png',
+    name: 'backward roll',
+    description: "To be added later",
+    apparatus: ['floor', 'beam',],
+    class: ['Mini Ninja', 'Mighty Ninja', `Women's Gymnastics`, `Men's Gymnastics`, 'Tumbling',],
   },
   {
-    id: '3958dc9e-742f-4377-85e9-fec4b6a6442a',
-    name: 'Lee Robinson',
-    email: 'lee@robinson.com',
-    image_url: '/customers/lee-robinson.png',
+    name: 'cartwheel',
+    description: "To be added later",
+    apparatus: ['Floor', 'Beam',],
+    class: ['Mini Ninja', 'Mighty Ninja', `Women's Gymnastics`, `Men's Gymnastics`, 'Tumbling',],
   },
   {
-    id: '76d65c26-f784-44a2-ac19-586678f7c2f2',
-    name: 'Michael Novotny',
-    email: 'michael@novotny.com',
-    image_url: '/customers/michael-novotny.png',
+    name: 'roundoff',
+    description: "To be added later",
+    apparatus: ['Floor', 'Beam', 'Vault'],
+    class: ['Mighty Ninja', `Women's Gymnastics`, `Men's Gymnastics`, 'Tumbling',],
   },
   {
-    id: 'CC27C14A-0ACF-4F4A-A6C9-D45682C144B9',
-    name: 'Amy Burns',
-    email: 'amy@burns.com',
-    image_url: '/customers/amy-burns.png',
+    name: 'front support',
+    description: "To be added later",
+    apparatus: ['Uneven Bars', 'P-Bars', 'Rings'],
+    class: ['Mini Ninja', 'Mighty Ninja', `Women's Gymnastics`, `Men's Gymnastics`,],
   },
   {
-    id: '13D07535-C59E-4157-A011-F8D2EF4E0CBB',
-    name: 'Balazs Orban',
-    email: 'balazs@orban.com',
-    image_url: '/customers/balazs-orban.png',
+    name: 'front hip circle',
+    description: "To be added later",
+    apparatus: ['Uneven Bars'],
+    class: [`Women's Gymnastics`, `Men's Gymnastics`,],
+  },
+  {
+    name: 'wall run',
+    description: "To be added later",
+    apparatus: ['Ninja Rig'],
+    class: ['Mini Ninja', 'Mighty Ninja',],
   },
 ];
 
-const invoices = [
-  {
-    customer_id: customers[0].id,
-    amount: 15795,
-    status: 'pending',
-    date: '2022-12-06',
-  },
-  {
-    customer_id: customers[1].id,
-    amount: 20348,
-    status: 'pending',
-    date: '2022-11-14',
-  },
-  {
-    customer_id: customers[4].id,
-    amount: 3040,
-    status: 'paid',
-    date: '2022-10-29',
-  },
-  {
-    customer_id: customers[3].id,
-    amount: 44800,
-    status: 'paid',
-    date: '2023-09-10',
-  },
-  {
-    customer_id: customers[5].id,
-    amount: 34577,
-    status: 'pending',
-    date: '2023-08-05',
-  },
-  {
-    customer_id: customers[2].id,
-    amount: 54246,
-    status: 'pending',
-    date: '2023-07-16',
-  },
-  {
-    customer_id: customers[0].id,
-    amount: 666,
-    status: 'pending',
-    date: '2023-06-27',
-  },
-  {
-    customer_id: customers[3].id,
-    amount: 32545,
-    status: 'paid',
-    date: '2023-06-09',
-  },
-  {
-    customer_id: customers[4].id,
-    amount: 1250,
-    status: 'paid',
-    date: '2023-06-17',
-  },
-  {
-    customer_id: customers[5].id,
-    amount: 8546,
-    status: 'paid',
-    date: '2023-06-07',
-  },
-  {
-    customer_id: customers[1].id,
-    amount: 500,
-    status: 'paid',
-    date: '2023-08-19',
-  },
-  {
-    customer_id: customers[5].id,
-    amount: 8945,
-    status: 'paid',
-    date: '2023-06-03',
-  },
-  {
-    customer_id: customers[2].id,
-    amount: 1000,
-    status: 'paid',
-    date: '2022-06-05',
-  },
+const apparatuses = [
+  'Floor',
+  'Vault',
+  'P-Bars',
+  'Pommel Horse',
+  'Rings',
+  'High Bar',
+  'Beam',
+  'Uneven Bars',
+  'Ninja Rig',
+  'Tumble Track',
+  'Star Bars',
+  'Empty Wall',
+  'Any',
 ];
 
-const revenue = [
-  { month: 'Jan', revenue: 2000 },
-  { month: 'Feb', revenue: 1800 },
-  { month: 'Mar', revenue: 2200 },
-  { month: 'Apr', revenue: 2500 },
-  { month: 'May', revenue: 2300 },
-  { month: 'Jun', revenue: 3200 },
-  { month: 'Jul', revenue: 3500 },
-  { month: 'Aug', revenue: 3700 },
-  { month: 'Sep', revenue: 2500 },
-  { month: 'Oct', revenue: 2800 },
-  { month: 'Nov', revenue: 3000 },
-  { month: 'Dec', revenue: 4800 },
-];
+const drills = [
+  {
+    id: 1,
+    description: "forward roll down cheese mat",
+    skill: 'forward roll',
+    instructions: "Start standing on mat for beginners, floor for more advanced. Reach both hands down in front of you, bending your knees into a squat. Bend your arms so your head touches the mat. Push with your legs and roll striaght down",
+    apparatus: ['Any'],
+    equipment: ['cheese mat'],
+  },
+  {
+    id: 2,
+    description: "forward roll up cheese mat",
+    skill: 'forward roll',
+    instructions: "Start standing on floor or mat. Reach both hands down in front of you, bending your knees into a squat. Bend your arms so your head touches the mat. Push with your legs and roll striaght up",
+    apparatus: ['Any'],
+    equipment: ['cheese mat'],
+  },
+  {
+    id: 3,
+    description: "cartwheel over mat",
+    skill: 'cartwheel',
+    instructions: "Start standing on floor, facing the long side of the panel mat. Place preferred foot forward. Reach both hands down on the mat, one in front of the other, facing out, while lifting non-preferred leg. Kick non-preferred leg to other side of mat, letting the preferred leg follow behind.",
+    apparatus: ['Floor'],
+    equipment: ['panel mat (any)'],
+  },
+  {
+    id: 4,
+    description: "roundoff over mat",
+    skill: 'roundoff',
+    instructions: "Start standing on floor, facing the long side of the panel mat. Do a roundoff over the mat, placing hands on top",
+    apparatus: ['Floor'],
+    equipment: ['panel mat (any)'],
+  },
+]
 
-export { users, customers, invoices, revenue };
+
+
+export { users, classes , skills, apparatuses, drills };
