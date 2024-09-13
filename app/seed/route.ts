@@ -111,7 +111,6 @@ async function seedApparatuses() {
       (appa) => client.sql`
         INSERT INTO apparatuses (apparatus)
         VALUES (${appa.apparatus})
-        ON CONFLICT (aapparatus) DO NOTHING;
       `,
     ),
   );
