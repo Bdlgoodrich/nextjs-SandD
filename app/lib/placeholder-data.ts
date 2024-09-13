@@ -9,7 +9,7 @@ const users = [
 ];
 
 const classes = [
-  {
+  /*{
     className: 'Mini Ninja',
     ages: '3-5',
   },
@@ -28,7 +28,14 @@ const classes = [
   {
     className: 'Tumbling',
     ages: '3-99',
+  },*/
+  {
+    className: 'Ninja/Parkour',
+    ages: '4-14',
   },
+
+
+
 ];
 
 const skills = [

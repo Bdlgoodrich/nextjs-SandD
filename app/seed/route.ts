@@ -59,7 +59,7 @@ async function seedDrills() {
       id SERIAL,
       description TEXT NOT NULL UNIQUE,
       skill VARCHAR(255) NOT NULL,
-      instructions TEXT DEFAULT 'TBD',
+      instructions TEXT NOT NULL,
       apparatus VARCHAR(255) NOT NULL,
       equipment VARCHAR(255) NOT NULL,
       purpose VARCHAR(255) NOT NULL,
@@ -128,8 +128,8 @@ export async function GET() {
     await client.sql`BEGIN`;
     //await seedUsers();
     //await seedSkills();
-    await seedDrills();
-    //await seedClasses();
+    //await seedDrills();
+    await seedClasses();
     //await seedApparatuses();
     await client.sql`COMMIT`;
 
