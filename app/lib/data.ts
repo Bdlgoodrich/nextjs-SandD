@@ -2,7 +2,9 @@ import { sql } from '@vercel/postgres';
 import {
   User,
   Skill,
-  Drill
+  Drill,
+  Apparatus,
+  ClassName,
 } from './definitions';
 
 export async function fetchClasses() {
@@ -65,8 +67,8 @@ export async function fetchFilteredSkills(
     console.error('Database Error:', error);
     throw new Error('Failed to fetch invoices.');
   }
-}
-
+}*/
+/*
 export async function fetchInvoicesPages(query: string) {
   try {
     const count = await sql`SELECT COUNT(*)
@@ -86,36 +88,37 @@ export async function fetchInvoicesPages(query: string) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch total number of invoices.');
   }
-}
+}*/
 
-export async function fetchInvoiceById(id: string) {
+export async function fetchSkillById(id: string) {
   try {
-    const data = await sql<InvoiceForm>`
+    const data = await sql<Skill>`
       SELECT
-        invoices.id,
-        invoices.customer_id,
-        invoices.amount,
-        invoices.status
-      FROM invoices
-      WHERE invoices.id = ${id};
+        skill.id,
+        skill.name,
+        skill.description,
+        skill.apparatus,
+        skill.className,
+        skill.imageLink,
+        skill.videoLink,
+      FROM skills
+      WHERE skill.id = ${id};
     `;
 
-    const invoice = data.rows.map((invoice) => ({
-      ...invoice,
-      // Convert amount from cents to dollars
-      amount: invoice.amount / 100,
+    const skill = data.rows.map((skill) => ({
+      ...skill,
     }));
 
-    return invoice[0];
+    return skill[0];
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch invoice.');
   }
 }
-
-export async function fetchCustomers() {
+/*
+export async function fetchApparatuses() {
   try {
-    const data = await sql<CustomerField>`
+    const data = await sql<Apparatus>`
       SELECT
         id,
         name
@@ -129,32 +132,27 @@ export async function fetchCustomers() {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch all customers.');
   }
-}
+}*/
 
-export async function fetchFilteredCustomers(query: string) {
+export async function fetchFilteredSkills(query: string) {
   try {
-    const data = await sql<CustomersTableType>`
+    const data = await sql<Skill>`
 		SELECT
-		  customers.id,
-		  customers.name,
-		  customers.email,
-		  customers.image_url,
-		  COUNT(invoices.id) AS total_invoices,
-		  SUM(CASE WHEN invoices.status = 'pending' THEN invoices.amount ELSE 0 END) AS total_pending,
-		  SUM(CASE WHEN invoices.status = 'paid' THEN invoices.amount ELSE 0 END) AS total_paid
-		FROM customers
+		  skill.id,
+		  skill.name,
+		  skill.description,
+		  skill.apparatus,
+		FROM skills
 		LEFT JOIN invoices ON customers.id = invoices.customer_id
 		WHERE
-		  customers.name ILIKE ${`%${query}%`} OR
-        customers.email ILIKE ${`%${query}%`}
-		GROUP BY customers.id, customers.name, customers.email, customers.image_url
+		  skill.name ILIKE ${`%${query}%`} OR
+        skill.email ILIKE ${`%${query}%`}
+		GROUP BY skill.id, skill.name, skill.description, skill.apparatus
 		ORDER BY customers.name ASC
 	  `;
 
-    const customers = data.rows.map((customer) => ({
-      ...customer,
-      total_pending: formatCurrency(customer.total_pending),
-      total_paid: formatCurrency(customer.total_paid),
+    const customers = data.rows.map((skill) => ({
+      ...skill,
     }));
 
     return customers;
@@ -162,4 +160,4 @@ export async function fetchFilteredCustomers(query: string) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
   }
-}*/
+}
