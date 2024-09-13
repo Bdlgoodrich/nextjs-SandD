@@ -45,7 +45,6 @@ async function seedSkills() {
       (skill) => client.sql`
         INSERT INTO skills (name, description, apparatus, className)
         VALUES (${skill.name}, ${skill.description}, ${skill.apparatus}, ${skill.className})
-        ON CONFLICT (id) DO NOTHING;
       `,
     ),
   );
