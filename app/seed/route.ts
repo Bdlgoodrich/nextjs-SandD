@@ -55,7 +55,7 @@ async function seedSkills() {
 
 async function seedDrills() {
   await client.sql`
-    CREATE TABLE IF NOT EXISTS invoices (
+    CREATE TABLE IF NOT EXISTS drills (
       id SERIAL,
       description TEXT NOT NULL,
       skill VARCHAR(255) NOT NULL,
@@ -68,9 +68,8 @@ async function seedDrills() {
   const insertedDrills = await Promise.all(
     drills.map(
       (drill) => client.sql`
-        INSERT INTO drills (id, description, skill, apparatus, equipment, purpose)
-        VALUES (${drill.id}, ${drill.description}, ${drill.skill}, ${drill.apparatus}, ${drill.equipment, drill.purpose})
-        ON CONFLICT (id) DO NOTHING;
+        INSERT INTO drills (description, skill, apparatus, equipment, purpose)
+        VALUES (${drill.description}, ${drill.skill}, ${drill.apparatus}, ${drill.equipment, drill.purpose})
       `,
     ),
   );
