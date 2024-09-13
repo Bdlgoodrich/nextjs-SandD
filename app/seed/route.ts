@@ -31,7 +31,7 @@ async function seedUsers() {
 
 async function seedSkills() {
   await client.sql`
-    CREATE TABLE IF NOT EXISTS invoices (
+    CREATE TABLE IF NOT EXISTS skills (
       id SERIAL,
       name VARCHAR(255) NOT NULL,
       description TEXT DEFAULT 'tbd',
@@ -42,7 +42,7 @@ async function seedSkills() {
 
   const insertedSkills = await Promise.all(
     skills.map(
-      async (skill) => client.sql`
+      (skill) => client.sql`
         INSERT INTO skills (id, name, description, apparatus, className)
         VALUES (${skill.id}, ${skill.name}, ${skill.description}, ${skill.apparatus}, ${skill.className})
         ON CONFLICT (id) DO NOTHING;
@@ -127,8 +127,8 @@ export async function GET() {
   try {
     await client.sql`BEGIN`;
     //await seedUsers();
-    //await seedSkills();
-    await seedDrills();
+    await seedSkills();
+    //await seedDrills();
     //await seedClasses();
     //await seedApparatuses();
     await client.sql`COMMIT`;
