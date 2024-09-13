@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { db } from '@vercel/postgres';
-import { users, /*classes,*/ skills, /*apparatuses,*/ drills } from '../lib/placeholder-data';
+import { users, classes, skills, apparatuses, drills } from '../lib/placeholder-data';
 
 const client = await db.connect();
 
@@ -78,7 +78,7 @@ async function seedDrills() {
   return insertedDrills;
 }
 
-/*
+
 async function seedClasses() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS classes (
@@ -117,7 +117,7 @@ async function seedApparatuses() {
   );
 
   return insertedApparatuses;
-}*/
+}
 
 export async function GET() {
   // return Response.json({
@@ -127,8 +127,8 @@ export async function GET() {
   try {
     await client.sql`BEGIN`;
     await seedUsers();
-    await seedSkills();
-    await seedDrills();
+    // seedSkills();
+    //await seedDrills();
     // await seedClasses();
     // await seedApparatuses();
     await client.sql`COMMIT`;
