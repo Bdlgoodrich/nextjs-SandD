@@ -58,7 +58,7 @@ async function seedDrills() {
       id SERIAL,
       description VARCHAR(255) NOT NULL UNIQUE,
       skill VARCHAR(255) NOT NULL,
-      instructions TEXT NOT NULL,
+      instructions TEXT DEFAULT 'TBD',
       apparatus VARCHAR(255) NOT NULL,
       equipment VARCHAR(255) NOT NULL,
       purpose VARCHAR(255) NOT NULL
@@ -125,11 +125,11 @@ export async function GET() {
   // });
   try {
     await client.sql`BEGIN`;
-    //await seedUsers();
+    await seedUsers();
     await seedSkills();
-    //await seedDrills();
-    //await seedClasses();
-    //await seedApparatuses();
+    await seedDrills();
+    await seedClasses();
+    await seedApparatuses();
     await client.sql`COMMIT`;
 
     return Response.json({ message: 'Database seeded successfully' });

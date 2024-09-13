@@ -86,7 +86,7 @@ const skills = [
     name: 'wall run',
     description: "Run towards a stable vertical surface. Step at least one foot onto the surface. Push off with last step in desired direction e.g. up, forward, away.",
     apparatus: 'Ninja Rig',
-    className: `Mini Ninja', 'Mighty Ninja`,
+    className: 'Mini Ninja, Mighty Ninja',
   },
 ];
 
@@ -114,7 +114,7 @@ const drills = [
     apparatus: 'Any',
     equipment: 'cheese mat',
     purpose: 'learning',
-  },/*
+  },
   {
     description: "forward roll up cheese mat",
     skill: 'forward roll',
@@ -138,7 +138,7 @@ const drills = [
     apparatus: 'Floor',
     equipment: 'panel mat (any)',
     purpose: 'learning',
-  },*/
+  },
 ]
 
 
