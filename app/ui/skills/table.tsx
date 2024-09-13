@@ -9,8 +9,7 @@ export default async function SkillsTable({
   query: string;
   currentPage: number;
 }) {
-  const skills = await fetchFilteredSkills(query);
-
+  const skills = await fetchFilteredSkills(query, currentPage);
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
@@ -30,10 +29,8 @@ export default async function SkillsTable({
                         height={28}
                         alt={`${skill.name}'s  image`}
                       />
-                      <p>{skill.name}</p>
+                      <p>{skill.name}{skill.imageLink}</p>
                     </div>
-                    <p className="text-sm text-gray-500">{skill.description}</p>
-
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
                   <div className="flex justify-end gap-2">
@@ -48,9 +45,6 @@ export default async function SkillsTable({
               <tr>
                 <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                   Skill
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Description
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
                   Apparatus
@@ -82,13 +76,10 @@ export default async function SkillsTable({
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {skill.description}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
                     {skill.apparatus}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {skill.className}
+                    {skill.course}
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">

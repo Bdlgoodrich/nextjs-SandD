@@ -4,7 +4,7 @@ import {
   Skill,
   Drill,
   Apparatus,
-  ClassName,
+  Course,
 } from './definitions';
 
 export async function fetchClasses() {
@@ -31,7 +31,6 @@ export async function fetchApparatuses() {
   }
 }
 /*
-
 export async function fetchCardData() {
 const ITEMS_PER_PAGE = 6;
 export async function fetchFilteredSkills(
@@ -68,18 +67,17 @@ export async function fetchFilteredSkills(
     throw new Error('Failed to fetch invoices.');
   }
 }*/
-/*
-export async function fetchInvoicesPages(query: string) {
+
+export async function fetchSkillsPages(query: string) {
   try {
+    const ITEMS_PER_PAGE = 10;
     const count = await sql`SELECT COUNT(*)
-    FROM invoices
-    JOIN customers ON invoices.customer_id = customers.id
+    FROM skills
     WHERE
-      customers.name ILIKE ${`%${query}%`} OR
-      customers.email ILIKE ${`%${query}%`} OR
-      invoices.amount::text ILIKE ${`%${query}%`} OR
-      invoices.date::text ILIKE ${`%${query}%`} OR
-      invoices.status ILIKE ${`%${query}%`}
+      skills.name ILIKE ${`%${query}%`} OR
+      skills.description ILIKE ${`%${query}%`} OR
+      skills.apparatus ILIKE ${`%${query}%`} OR
+      skills.group ILIKE ${`%${query}%`}
   `;
 
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
@@ -88,7 +86,7 @@ export async function fetchInvoicesPages(query: string) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch total number of invoices.');
   }
-}*/
+}
 
 export async function fetchSkillById(id: string) {
   try {
@@ -134,30 +132,27 @@ export async function fetchApparatuses() {
   }
 }*/
 
-export async function fetchFilteredSkills(query: string) {
+export async function fetchFilteredSkills(query: string, currentPage: number) {
   try {
     const data = await sql<Skill>`
-		SELECT
-		  skill.id,
-		  skill.name,
-		  skill.description,
-		  skill.apparatus,
+		SELECT *
 		FROM skills
-		LEFT JOIN invoices ON customers.id = invoices.customer_id
-		WHERE
-		  skill.name ILIKE ${`%${query}%`} OR
-        skill.email ILIKE ${`%${query}%`}
-		GROUP BY skill.id, skill.name, skill.description, skill.apparatus
-		ORDER BY customers.name ASC
+    WHERE
+      skills.name ILIKE ${`%${query}%`} OR
+      skills.description ILIKE ${`%${query}%`} OR
+      skills.apparatus ILIKE ${`%${query}%`} OR
+      skills.group ILIKE ${`%${query}%`}
+		ORDER BY skills.name ASC
 	  `;
 
-    const customers = data.rows.map((skill) => ({
-      ...skill,
+    const skills = data.rows.map((result) => ({
+      ...result,
     }));
 
-    return customers;
+    return skills;
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
   }
 }
+
