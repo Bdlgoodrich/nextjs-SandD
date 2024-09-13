@@ -81,16 +81,16 @@ async function seedDrills() {
 async function seedClasses() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS classes (
-      className VARCHAR(255) NOT NULL UNIQUE
+      className VARCHAR(255) NOT NULL UNIQUE,
+      ages VARCHAR(255)
     );
   `;
 
   const insertedClasses = await Promise.all(
     classes.map(
       (cla) => client.sql`
-        INSERT INTO classes (className)
-        VALUES (${cla})
-        ON CONFLICT (cla) DO NOTHING;
+        INSERT INTO classes (className, ages)
+        VALUES (${cla.className}, ${cla.ages})
       `,
     ),
   );
@@ -126,9 +126,9 @@ export async function GET() {
   try {
     await client.sql`BEGIN`;
     //await seedUsers();
-    await seedSkills();
+    //await seedSkills();
     //await seedDrills();
-    //await seedClasses();
+    await seedClasses();
     //await seedApparatuses();
     await client.sql`COMMIT`;
 

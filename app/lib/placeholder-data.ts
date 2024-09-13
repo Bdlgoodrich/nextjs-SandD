@@ -8,7 +8,28 @@ const users = [
   },
 ];
 
-const classes = ['Mini Ninja', 'Mighty Ninja', `Women's Gymnastics`, `Men's Gymnastics`, 'Tumbling',];
+const classes = [
+  {
+    className: 'Mini Ninja',
+    ages: '3-5',
+  },
+  {
+    className: 'Mighty Ninja',
+    ages: '6-9',
+  },
+  {
+    className: 'Women\'s Gymnastics',
+    ages: '3-99',
+  },
+  {
+    className: 'Men\'s Gymnastics',
+    ages: '3-99',
+  },
+  {
+    className: 'Tumbling',
+    ages: '3-99',
+  },
+];
 
 const skills = [
   {
@@ -63,19 +84,19 @@ const skills = [
 ];
 
 const apparatuses = [
-  {apparatus: 'Floor'},
-  {apparatus: 'Vault'},
-  {apparatus: 'P-Bars'},
-  {apparatus: 'Pommel Horse'},
-  {apparatus: 'Rings'},
-  {apparatus: 'High Bar'},
-  {apparatus: 'Beam'},
-  {apparatus: 'Uneven Bars'},
-  {apparatus: 'Ninja Rig'},
-  {apparatus: 'Tumble Track'},
-  {apparatus: 'Star Bars'},
-  {apparatus: 'Empty Wall'},
-  {apparatus: 'Any'},
+  { apparatus: 'Floor' },
+  { apparatus: 'Vault' },
+  { apparatus: 'P-Bars' },
+  { apparatus: 'Pommel Horse' },
+  { apparatus: 'Rings' },
+  { apparatus: 'High Bar' },
+  { apparatus: 'Beam' },
+  { apparatus: 'Uneven Bars' },
+  { apparatus: 'Ninja Rig' },
+  { apparatus: 'Tumble Track' },
+  { apparatus: 'Star Bars' },
+  { apparatus: 'Empty Wall' },
+  { apparatus: 'Any' },
 ];
 
 const drills = [

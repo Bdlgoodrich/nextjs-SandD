@@ -26,3 +26,8 @@ export type Drill = {
   equipment: string;
   purpose: "learning" | "improving";
 };
+
+export type Class = {
+  className: string;
+  ages: string;
+}
