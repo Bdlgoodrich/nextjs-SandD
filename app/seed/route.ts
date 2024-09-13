@@ -128,9 +128,9 @@ export async function GET() {
     await client.sql`BEGIN`;
     //await seedUsers();
     await seedSkills();
-    await seedDrills();
-    await seedClasses();
-    await seedApparatuses();
+    //await seedDrills();
+    //await seedClasses();
+    //await seedApparatuses();
     await client.sql`COMMIT`;
 
     return Response.json({ message: 'Database seeded successfully' });
