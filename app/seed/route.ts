@@ -59,6 +59,7 @@ async function seedDrills() {
       id SERIAL,
       description TEXT NOT NULL,
       skill VARCHAR(255) NOT NULL,
+      instructions TEXT DEFAULT 'TBD',
       apparatus VARCHAR(255) NOT NULL,
       equipment VARCHAR(255) NOT NULL,
       purpose VARCHAR(255) NOT NULL,
@@ -68,8 +69,8 @@ async function seedDrills() {
   const insertedDrills = await Promise.all(
     drills.map(
       (drill) => client.sql`
-        INSERT INTO drills (description, skill, apparatus, equipment, purpose)
-        VALUES (${drill.description}, ${drill.skill}, ${drill.apparatus}, ${drill.equipment, drill.purpose})
+        INSERT INTO drills (description, skill, instructions, apparatus, equipment, purpose)
+        VALUES (${drill.description}, ${drill.skill}, ${drill.instructions}, ${drill.apparatus}, ${drill.equipment}, ${drill.purpose})
       `,
     ),
   );
