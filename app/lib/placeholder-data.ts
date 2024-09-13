@@ -9,7 +9,7 @@ const users = [
 ];
 
 const classes = [
-  /*{
+  {
     className: 'Mini Ninja',
     ages: '3-5',
   },
@@ -28,7 +28,7 @@ const classes = [
   {
     className: 'Tumbling',
     ages: '3-99',
-  },*/
+  },
   {
     className: 'Ninja/Parkour',
     ages: '4-14',
@@ -108,13 +108,13 @@ const apparatuses = [
 
 const drills = [
   {
-    description: "forward roll down cheese mat",
+    description: 'forward roll down cheese mat',
     skill: 'forward roll',
-    instructions: "Start standing on mat for beginners, floor for more advanced. Roll down the mat.",
+    instructions: 'Start standing on mat for beginners, floor for more advanced. Roll down the mat.',
     apparatus: 'Any',
     equipment: 'cheese mat',
     purpose: 'learning',
-  },
+  },/*
   {
     description: "forward roll up cheese mat",
     skill: 'forward roll',
@@ -138,7 +138,7 @@ const drills = [
     apparatus: 'Floor',
     equipment: 'panel mat (any)',
     purpose: 'learning',
-  },
+  },*/
 ]
 
 

@@ -57,7 +57,7 @@ async function seedDrills() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS drills (
       id SERIAL,
-      description TEXT NOT NULL UNIQUE,
+      description VARCHAR(255) NOT NULL UNIQUE,
       skill VARCHAR(255) NOT NULL,
       instructions TEXT NOT NULL,
       apparatus VARCHAR(255) NOT NULL,
@@ -128,8 +128,8 @@ export async function GET() {
     await client.sql`BEGIN`;
     //await seedUsers();
     //await seedSkills();
-    //await seedDrills();
-    await seedClasses();
+    await seedDrills();
+    //await seedClasses();
     //await seedApparatuses();
     await client.sql`COMMIT`;
 
