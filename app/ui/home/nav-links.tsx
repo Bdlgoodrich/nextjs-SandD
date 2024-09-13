@@ -13,9 +13,10 @@ import clsx from 'clsx';
 // Depending on the size of the application, this would be stored in a database.
 const links = [
   { name: 'Home', href: '/home', icon: HomeIcon },
-  { name: 'Classes', href: '/home/class-list', icon: UserGroupIcon, },
-  { name: 'Skills', href: '/home/skills-list', icon: Bars4Icon, },
   { name: 'Apparatuses', href: '/home/apparatus-list', icon: Bars4Icon, },
+  { name: 'Skills', href: '/home/skills-list', icon: Bars4Icon, },
+  { name: 'Drills', href: '/home/drills-list', icon: Bars4Icon, },
+  { name: 'Classes', href: '/home/class-list', icon: UserGroupIcon, },
 ];
 
 export default function NavLinks() {
