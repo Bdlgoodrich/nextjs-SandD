@@ -8,6 +8,7 @@ const users = [
   },
 ];
 
+//TO DO: remove ages and add serial id?
 const classes = [
   {
     className: 'Mini Ninja',
