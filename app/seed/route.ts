@@ -110,8 +110,8 @@ async function seedApparatuses() {
     apparatuses.map(
       (appa) => client.sql`
         INSERT INTO apparatuses (apparatus)
-        VALUES (${appa})
-        ON CONFLICT (appa) DO NOTHING;
+        VALUES (${appa.apparatus})
+        ON CONFLICT (appa.apparatus) DO NOTHING;
       `,
     ),
   );
@@ -129,7 +129,7 @@ export async function GET() {
     //await seedUsers();
     //await seedSkills();
     //await seedDrills();
-    await seedClasses();
+    //await seedClasses();
     await seedApparatuses();
     await client.sql`COMMIT`;
 

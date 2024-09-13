@@ -63,19 +63,19 @@ const skills = [
 ];
 
 const apparatuses = [
-  'Floor',
-  'Vault',
-  'P-Bars',
-  'Pommel Horse',
-  'Rings',
-  'High Bar',
-  'Beam',
-  'Uneven Bars',
-  'Ninja Rig',
-  'Tumble Track',
-  'Star Bars',
-  'Empty Wall',
-  'Any',
+  {apparatus: 'Floor'},
+  {apparatus: 'Vault'},
+  {apparatus: 'P-Bars'},
+  {apparatus: 'Pommel Horse'},
+  {apparatus: 'Rings'},
+  {apparatus: 'High Bar'},
+  {apparatus: 'Beam'},
+  {apparatus: 'Uneven Bars'},
+  {apparatus: 'Ninja Rig'},
+  {apparatus: 'Tumble Track'},
+  {apparatus: 'Star Bars'},
+  {apparatus: 'Empty Wall'},
+  {apparatus: 'Any'},
 ];
 
 const drills = [
