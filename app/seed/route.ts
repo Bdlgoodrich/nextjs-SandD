@@ -57,7 +57,7 @@ async function seedDrills() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS drills (
       id SERIAL,
-      description TEXT NOT NULL,
+      description TEXT NOT NULL UNIQUE,
       skill VARCHAR(255) NOT NULL,
       instructions TEXT DEFAULT 'TBD',
       apparatus VARCHAR(255) NOT NULL,
@@ -68,9 +68,9 @@ async function seedDrills() {
 
   const insertedDrills = await Promise.all(
     drills.map(
-      (drill) => client.sql`
+      (drl) => client.sql`
         INSERT INTO drills (description, skill, instructions, apparatus, equipment, purpose)
-        VALUES (${drill.description}, ${drill.skill}, ${drill.instructions}, ${drill.apparatus}, ${drill.equipment}, ${drill.purpose})
+        VALUES (${drl.description}, ${drl.skill}, ${drl.instructions}, ${drl.apparatus}, ${drl.equipment}, ${drl.purpose})
       `,
     ),
   );
