@@ -15,6 +15,8 @@ export type Skill = {
   description: string;
   apparatus: string;
   className: string;
+  imageLink: string;
+  videoLink: string;
 };
 
 export type Drill = {
@@ -25,14 +27,20 @@ export type Drill = {
   apparatus: string;
   equipment: string;
   purpose: "learning" | "improving";
+  imageLink: string;
+  videoLink: string;
 };
 
-export type Class = {
+export type ClassName = {
+  id: number;
   className: string;
+  description: string;
   ages: string;
 }
 
 export type Apparatus = {
   id: number;
   apparatus: string;
+  description: string;
+  imageLink: string;
 }

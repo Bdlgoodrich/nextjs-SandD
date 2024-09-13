@@ -1,113 +1,127 @@
 
 const users = [
   {
-    id: '410544b2-4001-4271-9855-fec4b6a6442a',
+    //id: '410544b2-4001-4271-9855-fec4b6a6442a', auto-generate
     name: 'Admin',
     email: 'mgaf@email.com',
     password: 'SandDMGAF',
   },
 ];
 
-//TO DO: remove ages and add serial id?
-const classes = [
-  {
-    className: 'Mini Ninja',
-    ages: '3-5',
-  },
-  {
-    className: 'Mighty Ninja',
-    ages: '6-9',
-  },
+const classNames = [
+  //id serial
+  //description default 'tbd'
+  //ages default '3-99'
   {
     className: 'Women\'s Gymnastics',
-    ages: '3-99',
   },
   {
     className: 'Men\'s Gymnastics',
-    ages: '3-99',
   },
   {
     className: 'Tumbling',
-    ages: '3-99',
   },
   {
     className: 'Ninja/Parkour',
-    ages: '4-14',
   },
-
-
-
 ];
 
 const skills = [
+  //id serial
+  //imageLink default '/coming-soon-image.jpg'
+  //videoLink default 'tbd'
   {
-    id: 1,
     name: 'forward roll',
     description: "Reach both hands down in front of you, bending your knees into a squat. Bend your arms so your head touches the mat. Push with your legs and roll striaght forward, legs tucked.",
     apparatus: 'floor, beam',
-    className: `Mini Ninja, Mighty Ninja, Women's Gymnastics, Men's Gymnastics, Tumbling`,
+    className: `Ninja/Parkour, Women's Gymnastics, Men's Gymnastics, Tumbling`,
   },
   {
-    id: 2,
     name: 'backward roll',
     description: "tbd",
     apparatus: 'floor, beam',
-    className: `Mini Ninja, Mighty Ninja, Women's Gymnastics, Men's Gymnastics, Tumbling`,
+    className: `Ninja/Parkour, Women's Gymnastics, Men's Gymnastics, Tumbling`,
   },
   {
-    id: 3,
     name: 'cartwheel',
     description: "tbd",
     apparatus: 'Floor, Beam',
-    className: `Mini Ninja, Mighty Ninja, Women's Gymnastics, Men's Gymnastics, Tumbling`,
+    className: `Ninja/Parkour, Women's Gymnastics, Men's Gymnastics, Tumbling`,
   },
   {
-    id: 4,
     name: 'roundoff',
     description: "tbd",
     apparatus: 'Floor, Beam, Vault',
-    className: `Mighty Ninja, Women's Gymnastics, Men's Gymnastics, Tumbling`,
+    className: `Ninja/Parkour, Women's Gymnastics, Men's Gymnastics, Tumbling`,
   },
   {
-    id: 5,
     name: 'front support',
     description: "tbd",
     apparatus: 'Uneven Bars, P-Bars, Rings',
-    className: `Mini Ninja, Mighty Ninja, Women's Gymnastics, Men's Gymnastics`,
+    className: `Ninja/Parkour, Women's Gymnastics, Men's Gymnastics`,
   },
   {
-    id: 6,
     name: 'front hip circle',
     description: "tbd",
     apparatus: 'Uneven Bars',
-    className: `Women's Gymnastics, Men's Gymnastics`,
+    className: `Ninja/Parkour, Women's Gymnastics, Men's Gymnastics`,
   },
   {
-    id: 7,
     name: 'wall run',
     description: "Run towards a stable vertical surface. Step at least one foot onto the surface. Push off with last step in desired direction e.g. up, forward, away.",
     apparatus: 'Ninja Rig',
-    className: 'Mini Ninja, Mighty Ninja',
+    className: 'Ninja/Parkour',
   },
 ];
 
 const apparatuses = [
-  { apparatus: 'Floor' },
-  { apparatus: 'Vault' },
-  { apparatus: 'P-Bars' },
-  { apparatus: 'Pommel Horse' },
-  { apparatus: 'Rings' },
-  { apparatus: 'High Bar' },
-  { apparatus: 'Beam' },
-  { apparatus: 'Uneven Bars' },
-  { apparatus: 'Ninja Rig' },
-  { apparatus: 'Tumble Track' },
-  { apparatus: 'Star Bars' },
-  { apparatus: 'Empty Wall' },
-  { apparatus: 'Any' },
+  //id serial
+  //imageLink default '/coming-soon-image.jpg'
+  { apparatus: 'Floor',
+    description: 'tbd'
+  },
+  { apparatus: 'Vault',
+    description: 'tbd'
+  },
+  { apparatus: 'P-Bars',
+    description: 'tbd' 
+  },
+  { apparatus: 'Pommel Horse',
+    description: 'tbd' 
+  },
+  { apparatus: 'Rings',
+    description: 'tbd' 
+  },
+  { apparatus: 'High Bar',
+    description: 'tbd' 
+  },
+  { apparatus: 'Beam',
+    description: 'tbd'
+   },
+  { apparatus: 'Uneven Bars',
+    description: 'tbd' 
+  },
+  { apparatus: 'Ninja Rig',
+    description: 'The warped wall, climbing wall, rig, and generic horizontal bar' 
+  },
+  { apparatus: 'Tumble Track',
+    description: 'A long trampoline with a resi at the end.' 
+  },
+  { apparatus: 'Star Bars',
+    description: '4 connected, adjustable height horizontal bars. Also includes free-standing kip bars for smaller athletes.' 
+  },
+  { apparatus: 'Empty Wall',
+    description: 'Any wall in the gym not blocked by equipment' 
+  },
+  { apparatus: 'Any',
+    description: 'Any empty floor space in the gym.'
+  },
 ];
 
 const drills = [
+  //id serial
+  //imageLink default '/coming-soon-image.jpg'
+  //videoLink default 'tbd'
   {
     description: 'forward roll down cheese mat',
     skill: 'forward roll',
@@ -144,4 +158,4 @@ const drills = [
 
 
 
-export { users, classes, skills, apparatuses, drills };
+export { users, classNames, skills, apparatuses, drills };

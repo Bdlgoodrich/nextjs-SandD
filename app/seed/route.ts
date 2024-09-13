@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { db } from '@vercel/postgres';
-import { users, classes, skills, apparatuses, drills } from '../lib/placeholder-data';
+import { users, classNames, skills, apparatuses, drills } from '../lib/placeholder-data';
 
 const client = await db.connect();
 
@@ -19,8 +19,8 @@ async function seedUsers() {
     users.map(async (user) => {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       return client.sql`
-        INSERT INTO users (id, name, email, password)
-        VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+        INSERT INTO users (name, email, password)
+        VALUES (${user.name}, ${user.email}, ${hashedPassword})
         ON CONFLICT (id) DO NOTHING;
       `;
     }),
@@ -36,7 +36,9 @@ async function seedSkills() {
       name VARCHAR(255) NOT NULL UNIQUE,
       description TEXT DEFAULT 'tbd',
       apparatus VARCHAR(255) DEFAULT 'tbd',
-      className VARCHAR(255) DEFAULT 'tbd'
+      className VARCHAR(255) DEFAULT 'tbd',
+      imageLink VARCHAR(255) DEFAULT '/coming-soon-image.jpg',
+      videoLink VARCHAR(255) DEFAULT 'tbd'
     );
   `;
 
@@ -58,10 +60,12 @@ async function seedDrills() {
       id SERIAL,
       description VARCHAR(255) NOT NULL UNIQUE,
       skill VARCHAR(255) NOT NULL,
-      instructions TEXT DEFAULT 'TBD',
-      apparatus VARCHAR(255) NOT NULL,
-      equipment VARCHAR(255) NOT NULL,
-      purpose VARCHAR(255) NOT NULL
+      instructions TEXT DEFAULT 'tbd',
+      apparatus VARCHAR(255) DEFAULT 'tbd',
+      equipment VARCHAR(255) DEFAULT 'tbd',
+      purpose VARCHAR(255) NOT NULL,
+      imageLink VARCHAR(255) DEFAULT '/coming-soon-image.jpg',
+      videoLink VARCHAR(255) DEFAULT 'tbd'
     );
   `;
 
@@ -78,19 +82,21 @@ async function seedDrills() {
 }
 
 
-async function seedClasses() {
+async function seedClassNames() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS classes (
+      id SERIAL,
       className VARCHAR(255) NOT NULL UNIQUE,
-      ages VARCHAR(255)
+      description TEXT DEFAULT 'tbd',
+      ages VARCHAR(255) DEFAULT '3-99'
     );
   `;
 
   const insertedClasses = await Promise.all(
-    classes.map(
+    classNames.map(
       (cla) => client.sql`
-        INSERT INTO classes (className, ages)
-        VALUES (${cla.className}, ${cla.ages})
+        INSERT INTO classes (className)
+        VALUES (${cla.className})
       `,
     ),
   );
@@ -102,15 +108,17 @@ async function seedApparatuses() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS apparatuses (
       id SERIAL,
-      apparatus VARCHAR(255) NOT NULL UNIQUE
+      apparatus VARCHAR(255) NOT NULL UNIQUE,
+      description VARCHAR(255) NOT NULL,
+      imageLink VARCHAR(255) DEFAULT '/coming-soon-image.jpg'
     );
   `;
 
   const insertedApparatuses = await Promise.all(
     apparatuses.map(
       (appa) => client.sql`
-        INSERT INTO apparatuses (apparatus)
-        VALUES (${appa.apparatus})
+        INSERT INTO apparatuses (apparatus, description)
+        VALUES (${appa.apparatus}, ${appa.description})
       `,
     ),
   );
@@ -128,7 +136,7 @@ export async function GET() {
     await seedUsers();
     await seedSkills();
     await seedDrills();
-    await seedClasses();
+    await seedClassNames();
     await seedApparatuses();
     await client.sql`COMMIT`;
 
