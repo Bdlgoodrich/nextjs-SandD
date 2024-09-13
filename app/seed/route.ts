@@ -33,10 +33,10 @@ async function seedSkills() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS skills (
       id SERIAL,
-      name VARCHAR(255) NOT NULL,
+      name VARCHAR(255) NOT NULL UNIQUE,
       description TEXT DEFAULT 'tbd',
       apparatus VARCHAR(255) DEFAULT 'tbd',
-      className VARCHAR(255) DEFAULT 'tbd',
+      className VARCHAR(255) DEFAULT 'tbd'
     );
   `;
 
@@ -62,7 +62,7 @@ async function seedDrills() {
       instructions TEXT NOT NULL,
       apparatus VARCHAR(255) NOT NULL,
       equipment VARCHAR(255) NOT NULL,
-      purpose VARCHAR(255) NOT NULL,
+      purpose VARCHAR(255) NOT NULL
     );
   `;
 
