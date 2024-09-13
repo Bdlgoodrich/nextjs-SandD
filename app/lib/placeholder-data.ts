@@ -101,7 +101,6 @@ const apparatuses = [
 
 const drills = [
   {
-    id: 1,
     description: "forward roll down cheese mat",
     skill: 'forward roll',
     instructions: "Start standing on mat for beginners, floor for more advanced. Roll down the mat.",
@@ -110,7 +109,6 @@ const drills = [
     purpose: 'learning',
   },
   {
-    id: 2,
     description: "forward roll up cheese mat",
     skill: 'forward roll',
     instructions: "Start standing on floor or mat. Reach both hands down in front of you, bending your knees into a squat. Bend your arms so your head touches the mat. Push with your legs and roll striaght up",
@@ -119,7 +117,6 @@ const drills = [
     purpose: 'improving',
   },
   {
-    id: 3,
     description: "cartwheel over mat",
     skill: 'cartwheel',
     instructions: "Start standing on floor, facing the long side of the panel mat. Place preferred foot forward. Reach both hands down on the mat, one in front of the other, facing out, while lifting non-preferred leg. Kick non-preferred leg to other side of mat, letting the preferred leg follow behind.",
@@ -128,7 +125,6 @@ const drills = [
     purpose: 'learning',
   },
   {
-    id: 4,
     description: "roundoff over mat",
     skill: 'roundoff',
     instructions: "Start standing on floor, facing the long side of the panel mat. Do a roundoff over the mat, placing hands on top",
