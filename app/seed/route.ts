@@ -101,6 +101,7 @@ async function seedClasses() {
 async function seedApparatuses() {
   await client.sql`
     CREATE TABLE IF NOT EXISTS apparatuses (
+      id SERIAL,
       apparatus VARCHAR(255) NOT NULL UNIQUE
     );
   `;
@@ -129,7 +130,7 @@ export async function GET() {
     //await seedSkills();
     //await seedDrills();
     //await seedClasses();
-    await seedApparatuses();
+    //await seedApparatuses();
     await client.sql`COMMIT`;
 
     return Response.json({ message: 'Database seeded successfully' });

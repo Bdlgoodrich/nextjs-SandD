@@ -31,3 +31,8 @@ export type Class = {
   className: string;
   ages: string;
 }
+
+export type Apparatus = {
+  id: number;
+  apparatus: string;
+}
