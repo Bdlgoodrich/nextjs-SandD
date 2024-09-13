@@ -36,7 +36,7 @@ async function seedSkills() {
       name VARCHAR(255) NOT NULL,
       description TEXT DEFAULT 'tbd',
       apparatus VARCHAR(255) DEFAULT 'tbd',
-      className TEXT DEFAULT 'tbd',
+      className VARCHAR(255) DEFAULT 'tbd',
     );
   `;
 
@@ -127,8 +127,8 @@ export async function GET() {
   try {
     await client.sql`BEGIN`;
     //await seedUsers();
-    //await seedSkills();
-    await seedDrills();
+    await seedSkills();
+    //await seedDrills();
     //await seedClasses();
     //await seedApparatuses();
     await client.sql`COMMIT`;
