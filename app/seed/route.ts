@@ -107,9 +107,9 @@ async function seedApparatuses() {
 
   const insertedApparatuses = await Promise.all(
     apparatuses.map(
-      (apparatus) => client.sql`
+      (appa) => client.sql`
         INSERT INTO apparatuses (apparatus)
-        VALUES (${apparatus.apparatus})
+        VALUES (${appa.apparatus})
         ON CONFLICT (aapparatus) DO NOTHING;
       `,
     ),
@@ -128,8 +128,8 @@ export async function GET() {
     //await seedUsers();
     //await seedSkills();
     //await seedDrills();
-    await seedClasses();
-    //await seedApparatuses();
+    //await seedClasses();
+    await seedApparatuses();
     await client.sql`COMMIT`;
 
     return Response.json({ message: 'Database seeded successfully' });
