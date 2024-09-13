@@ -14,7 +14,7 @@ export type Skill = {
   name: string;
   description: string;
   apparatus: string;
-  class: string;
+  className: string;
 };
 
 export type Drill = {
