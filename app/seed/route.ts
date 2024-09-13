@@ -36,15 +36,15 @@ async function seedSkills() {
       name VARCHAR(255) NOT NULL,
       description TEXT DEFAULT 'tbd',
       apparatus VARCHAR(255) DEFAULT 'tbd',
-      class TEXT DEFAULT 'tbd',
+      className TEXT DEFAULT 'tbd',
     );
   `;
 
   const insertedSkills = await Promise.all(
     skills.map(
       async (skill) => client.sql`
-        INSERT INTO skills (id, name, description, apparatus, class)
-        VALUES (${skill.id}, ${skill.name}, ${skill.description}, ${skill.apparatus}, ${skill.class})
+        INSERT INTO skills (id, name, description, apparatus, className)
+        VALUES (${skill.id}, ${skill.name}, ${skill.description}, ${skill.apparatus}, ${skill.className})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),
@@ -127,10 +127,10 @@ export async function GET() {
   try {
     await client.sql`BEGIN`;
     //await seedUsers();
-    //await seedSkills();
+    await seedSkills();
     //await seedDrills();
     //await seedClasses();
-    await seedApparatuses();
+    //await seedApparatuses();
     await client.sql`COMMIT`;
 
     return Response.json({ message: 'Database seeded successfully' });
