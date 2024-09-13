@@ -43,8 +43,8 @@ async function seedSkills() {
   const insertedSkills = await Promise.all(
     skills.map(
       (skill) => client.sql`
-        INSERT INTO skills (id, name, description, apparatus, className)
-        VALUES (${skill.id}, ${skill.name}, ${skill.description}, ${skill.apparatus}, ${skill.className})
+        INSERT INTO skills (name, description, apparatus, className)
+        VALUES (${skill.name}, ${skill.description}, ${skill.apparatus}, ${skill.className})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),
