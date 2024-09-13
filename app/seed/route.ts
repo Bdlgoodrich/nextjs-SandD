@@ -127,8 +127,8 @@ export async function GET() {
   try {
     await client.sql`BEGIN`;
     //await seedUsers();
-    await seedSkills();
-    //await seedDrills();
+    //await seedSkills();
+    await seedDrills();
     //await seedClasses();
     //await seedApparatuses();
     await client.sql`COMMIT`;
