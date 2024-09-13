@@ -14,18 +14,6 @@
       <p>Drills will bring up a search feature where you can search for drills based on any property or properties (skill, description, instructions, apparatus, equipment, or purpose).
         Clicking on a drill will bring up a page listing all of its properties.
       </p>
-          {/* <Card title="Collected" value={totalPaidInvoices} type="collected" /> */}
-          {/* <Card title="Pending" value={totalPendingInvoices} type="pending" /> */}
-          {/* <Card title="Total Invoices" value={numberOfInvoices} type="invoices" /> */}
-          {/* <Card
-            title="Total Customers"
-            value={numberOfCustomers}
-            type="customers"
-          /> */}
-        </div>
-        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-          {/* <RevenueChart revenue={revenue}  /> */}
-          {/* <LatestInvoices latestInvoices={latestInvoices} /> */}
         </div>
       </main>
     );
