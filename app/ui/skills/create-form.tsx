@@ -2,12 +2,13 @@ import { Skill } from '@/app/lib/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { fetchApparatuses, fetchCourses } from '@/app/lib/data';
+import { createSkill } from '@/app/lib/actions';
 
 export default async function SkillsForm({ skills }: { skills: Skill[] }) {
     const apparatuses = await fetchApparatuses();
     const courses = await fetchCourses();
     return (
-        <form>
+        <form action={createSkill}>
             <div className="rounded-md bg-gray-50 p-4 md:p-6">
 
                 {/* Skill Name */}
@@ -53,8 +54,8 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                     </label>
                     <div className="relative">
                         <select
-                            id="apparatuses"
-                            name="apparatuses"
+                            id="apparatus"
+                            name="apparatus"
                             className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             multiple
                             aria-describedby="apparatus-error"
@@ -77,8 +78,8 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                     </label>
                     <div className="relative">
                         <select
-                            id="courses"
-                            name="courses"
+                            id="course"
+                            name="course"
                             className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             multiple
                             aria-describedby="classes-error"
