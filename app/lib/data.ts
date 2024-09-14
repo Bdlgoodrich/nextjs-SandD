@@ -77,7 +77,7 @@ export async function fetchSkillsPages(query: string) {
       skills.name ILIKE ${`%${query}%`} OR
       skills.description ILIKE ${`%${query}%`} OR
       skills.apparatus ILIKE ${`%${query}%`} OR
-      skills.group ILIKE ${`%${query}%`}
+      skills.course ILIKE ${`%${query}%`}
   `;
 
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
@@ -141,7 +141,7 @@ export async function fetchFilteredSkills(query: string, currentPage: number) {
       skills.name ILIKE ${`%${query}%`} OR
       skills.description ILIKE ${`%${query}%`} OR
       skills.apparatus ILIKE ${`%${query}%`} OR
-      skills.group ILIKE ${`%${query}%`}
+      skills.course ILIKE ${`%${query}%`}
 		ORDER BY skills.name ASC
 	  `;
 
