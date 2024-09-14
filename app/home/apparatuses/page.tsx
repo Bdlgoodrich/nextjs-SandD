@@ -1,4 +1,3 @@
-import { fetchApparatuses } from "@/app/lib/data";
 import ApparatusesTable from "@/app/ui/apparatuses/table"
 
 

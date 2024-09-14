@@ -11,7 +11,8 @@ export async function fetchCourses() {
   try {
     const data = await sql<Course>`
       SELECT *
-      FROM courses;
+      FROM courses
+      ORDER BY courses.name ASC;
     `;
 
     const courses = data.rows.map((course) => ({
@@ -29,7 +30,8 @@ export async function fetchApparatuses() {
   try {
       const data = await sql<Apparatus>`
         SELECT *
-        FROM apparatuses;
+        FROM apparatuses
+        ORDER BY apparatuses.name ASC;
       `;
   
       const apparatuses = data.rows.map((apparatus) => ({
@@ -41,6 +43,24 @@ export async function fetchApparatuses() {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch class list.');
+  }
+}
+
+export async function fetchSkills() {
+  try {
+      const data = await sql<Skill>`
+        SELECT *
+        FROM skills;
+      `;
+  
+      const skills = data.rows.map((skill) => ({
+        ...skill,
+      }));
+  
+      return skills;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch skills list.');
   }
 }
 

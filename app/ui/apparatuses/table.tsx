@@ -24,13 +24,6 @@ export default async function ApparatusesTable() {
                       <div>
                         <div className="mb-2 flex items-center">
                           <div className="flex items-center gap-3">
-                            <Image
-                              src="/coming-soon-image.png"
-                              className="rounded-full"
-                              alt={`image of ${apparatus.name}`}
-                              width={28}
-                              height={28}
-                            />
                             <p>{apparatus.name}</p>
                           </div>
                         </div>
@@ -45,6 +38,9 @@ export default async function ApparatusesTable() {
               <table className="hidden min-w-full rounded-md text-gray-900 md:table">
                 <thead className="rounded-md bg-gray-50 text-left text-sm font-normal">
                   <tr>
+                  <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                      Image
+                    </th>
                     <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                       Apparatus
                     </th>
@@ -57,15 +53,17 @@ export default async function ApparatusesTable() {
                 <tbody className="divide-y divide-gray-200 text-gray-900">
                   {apparatuses.map((apparatus) => (
                     <tr key={apparatus.id} className="group">
-                      <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
-                        <div className="flex items-center gap-3">
-                          <Image
+                      <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
+                        <Image
                             src="/coming-soon-image.png"
                             className="rounded-full"
                             alt={`image of ${apparatus.name}`}
                             width={150}
                             height={150}
                           />
+                      </td>
+                      <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 text-sm text-black group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
+                        <div className="flex items-center gap-3">
                           <p>{apparatus.name}</p>
                         </div>
                       </td>
