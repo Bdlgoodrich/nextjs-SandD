@@ -7,66 +7,42 @@ import {
   Course,
 } from './definitions';
 
-export async function fetchClasses() {
+export async function fetchCourses() {
   try {
+    const data = await sql<Course>`
+      SELECT *
+      FROM courses;
+    `;
 
-    const data = await sql<String>`SELECT * FROM classes`;
+    const courses = data.rows.map((course) => ({
+      ...course,
+    }));
 
-    return data.rows;
-  } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch class list.');
-  }
+    return courses;
+} catch (error) {
+  console.error('Database Error:', error);
+  throw new Error('Failed to fetch class list.');
+}
 }
 
 export async function fetchApparatuses() {
   try {
-
-    const data = await sql<String>`SELECT * FROM apparatuses`;
-
-    return data.rows;
+      const data = await sql<Apparatus>`
+        SELECT *
+        FROM apparatuses;
+      `;
+  
+      const apparatuses = data.rows.map((apparatus) => ({
+        ...apparatus,
+        //TODO format links
+      }));
+  
+      return apparatuses;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch class list.');
   }
 }
-/*
-export async function fetchCardData() {
-const ITEMS_PER_PAGE = 6;
-export async function fetchFilteredSkills(
-  query: string,
-  currentPage: number,
-) {
-  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
-
-  try {
-    const skills = await sql<SkillsTable>`
-      SELECT
-        invoices.id,
-        invoices.amount,
-        invoices.date,
-        invoices.status,
-        customers.name,
-        customers.email,
-        customers.image_url
-      FROM invoices
-      JOIN customers ON invoices.customer_id = customers.id
-      WHERE
-        customers.name ILIKE ${`%${query}%`} OR
-        customers.email ILIKE ${`%${query}%`} OR
-        invoices.amount::text ILIKE ${`%${query}%`} OR
-        invoices.date::text ILIKE ${`%${query}%`} OR
-        invoices.status ILIKE ${`%${query}%`}
-      ORDER BY invoices.date DESC
-      LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
-    `;
-
-    return invoices.rows;
-  } catch (error) {
-    console.error('Database Error:', error);
-    throw new Error('Failed to fetch invoices.');
-  }
-}*/
 
 export async function fetchSkillsPages(query: string) {
   try {

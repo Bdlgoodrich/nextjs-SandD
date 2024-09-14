@@ -36,7 +36,7 @@ async function seedSkills() {
       name VARCHAR(255) NOT NULL UNIQUE,
       description TEXT DEFAULT 'tbd',
       apparatus VARCHAR(255) DEFAULT 'tbd',
-      className VARCHAR(255) DEFAULT 'tbd',
+      group VARCHAR(255) DEFAULT 'tbd',
       imageLink VARCHAR(255) DEFAULT '/coming-soon-image.jpg',
       videoLink VARCHAR(255) DEFAULT 'tbd'
     );
@@ -82,26 +82,26 @@ async function seedDrills() {
 }
 
 
-async function seedClassNames() {
+async function seedCourses() {
   await client.sql`
-    CREATE TABLE IF NOT EXISTS classes (
+    CREATE TABLE IF NOT EXISTS courses (
       id SERIAL,
-      className VARCHAR(255) NOT NULL UNIQUE,
+      name VARCHAR(255) NOT NULL UNIQUE,
       description TEXT DEFAULT 'tbd',
       ages VARCHAR(255) DEFAULT '3-99'
     );
   `;
 
-  const insertedClasses = await Promise.all(
-    classNames.map(
-      (cla) => client.sql`
-        INSERT INTO classes (className)
-        VALUES (${cla.className})
+  const insertedCourses = await Promise.all(
+    courses.map(
+      (course) => client.sql`
+        INSERT INTO courses (name)
+        VALUES (${course.name})
       `,
     ),
   );
 
-  return insertedClasses;
+  return insertedCourses;
 }
 
 async function seedApparatuses() {

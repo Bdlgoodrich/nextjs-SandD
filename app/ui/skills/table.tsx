@@ -22,14 +22,7 @@ export default async function SkillsTable({
               >
                 <div className="flex items-center justify-between border-b pb-4">
                     <div className="mb-2 flex items-center">
-                      <Image
-                        src={skill.imageLink}
-                        className="mr-2 rounded-full"
-                        width={28}
-                        height={28}
-                        alt={`${skill.name}'s  image`}
-                      />
-                      <p>{skill.name}{skill.imageLink}</p>
+                      <p><strong>{skill.name} </strong>  {skill.apparatus}</p>
                     </div>
                 </div>
                 <div className="flex w-full items-center justify-between pt-4">
@@ -65,14 +58,7 @@ export default async function SkillsTable({
                 >
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex items-center gap-3">
-                      <Image
-                        src={skill.imageLink}
-                        className="rounded-full"
-                        width={28}
-                        height={28}
-                        alt={`${skill.name}'s profile picture`}
-                      />
-                      <p>{skill.name}</p>
+                      <p><strong>{skill.name}</strong></p>
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">

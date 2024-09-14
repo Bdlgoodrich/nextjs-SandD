@@ -33,14 +33,14 @@ export type Drill = {
 
 export type Course = {
   id: number;
-  Name: string;
+  name: string;
   description: string;
   ages: string;
 }
 
 export type Apparatus = {
   id: number;
-  apparatus: string;
+  name: string;
   description: string;
   imageLink: string;
 }
