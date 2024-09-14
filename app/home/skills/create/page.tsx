@@ -1,4 +1,4 @@
-import Form from '@/app/ui/skills/create-form';
+import SkillsForm from '@/app/ui/skills/create-form';
 import Breadcrumbs from '@/app/ui/skills/breadcrumbs';
 import { fetchSkills } from '@/app/lib/data';
  
@@ -17,7 +17,7 @@ export default async function Page() {
           },
         ]}
       />
-      <Form skills={skills} />
+      <SkillsForm skills={skills} />
     </main>
   );
 }

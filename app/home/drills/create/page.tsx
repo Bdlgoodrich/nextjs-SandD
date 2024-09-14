@@ -1,15 +1,15 @@
-import Form from '@/app/ui/skills/create-form';
+import DrillsForm from '@/app/ui/drills/create-form';
 import Breadcrumbs from '@/app/ui/skills/breadcrumbs';
-import { fetchSkills } from '@/app/lib/data';
+import { fetchDrills } from '@/app/lib/data';
  
 export default async function Page() {
-  const skills = await fetchSkills();
+  const drills = await fetchDrills();
  
   return (
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Drills', href: '/dashboard/drills' },
+          { label: 'Drills', href: '/home/drills' },
           {
             label: 'Create Drill',
             href: '/home/drills/create',
@@ -17,7 +17,7 @@ export default async function Page() {
           },
         ]}
       />
-      <Form skills={skills} />
+      <DrillsForm drills={drills} />
     </main>
   );
 }

@@ -1,14 +1,9 @@
 import { Skill } from '@/app/lib/definitions';
 import Link from 'next/link';
-import {
-    CheckIcon,
-    ClockIcon,
-    UserCircleIcon,
-} from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
 import { fetchApparatuses, fetchCourses } from '@/app/lib/data';
 
-export default async function Form({ skills }: { skills: Skill[] }) {
+export default async function SkillsForm({ skills }: { skills: Skill[] }) {
     const apparatuses = await fetchApparatuses();
     const courses = await fetchCourses();
     return (
