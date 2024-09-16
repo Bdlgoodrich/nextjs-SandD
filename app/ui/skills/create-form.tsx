@@ -63,7 +63,7 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                             <option value="" disabled>
                             </option>
                             {apparatuses.map((apparatus) => (
-                                <option key={apparatus.id} value={apparatus.id}>
+                                <option key={apparatus.id} value={apparatus.name}>
                                     {apparatus.name}
                                 </option>
                             ))}
@@ -87,7 +87,7 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                             <option value="" disabled>
                             </option>
                             {courses.map((course) => (
-                                <option key={course.id} value={course.id}>
+                                <option key={course.id} value={course.name}>
                                     {course.name}
                                 </option>
                             ))}
