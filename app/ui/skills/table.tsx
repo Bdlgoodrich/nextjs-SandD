@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { UpdateSkill } from '@/app/ui/skills/buttons';
 import { fetchFilteredSkills } from '@/app/lib/data';
 

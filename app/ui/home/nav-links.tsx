@@ -16,7 +16,7 @@ const links = [
   { name: 'Apparatuses', href: '/home/apparatuses', icon: Bars4Icon, },
   { name: 'Skills', href: '/home/skills', icon: Bars4Icon, },
   { name: 'Drills', href: '/home/drills', icon: Bars4Icon, },
-  { name: 'Classes', href: '/home/courses', icon: UserGroupIcon, },
+  { name: 'Classes', href: '/home/classes', icon: UserGroupIcon, },
 ];
 
 export default function NavLinks() {

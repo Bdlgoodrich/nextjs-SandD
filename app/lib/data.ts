@@ -123,6 +123,24 @@ export async function fetchDrillsPages(query: string) {
   }
 }
 
+export async function fetchCoursesPages(query: string) {
+  try {
+    const ITEMS_PER_PAGE = 10;
+    const count = await sql`SELECT COUNT(*)
+    FROM courses
+    WHERE
+      courses.name ILIKE ${`%${query}%`} OR
+      courses.description ILIKE ${`%${query}%`}
+  `;
+
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of classes.');
+  }
+}
+
 export async function fetchSkillById(id: string) {
   try {
     const data = await sql<Skill>`
@@ -207,5 +225,26 @@ export async function fetchFilteredDrills(query: string, currentPage: number) {
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch filtered drills.');
+  }
+}
+
+export async function fetchFilteredCourses(query: string, currentPage: number) {
+  try {
+    const data = await sql<Course>`
+		SELECT *
+		FROM courses
+    WHERE
+      courses.name ILIKE ${`%${query}%`} OR
+      courses.description ILIKE ${`%${query}%`}
+	  `;
+
+    const courses = data.rows.map((result) => ({
+      ...result,
+    }));
+
+    return courses;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch filtered classes.');
   }
 }
