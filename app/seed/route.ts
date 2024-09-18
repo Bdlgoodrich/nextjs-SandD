@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { db } from '@vercel/postgres';
-import { users, classNames, skills, apparatuses, drills } from '../lib/placeholder-data';
+import { users, courses, skills, apparatuses, drills } from '../lib/placeholder-data';
 
 const client = await db.connect();
 
@@ -36,8 +36,7 @@ async function seedSkills() {
       name VARCHAR(255) NOT NULL UNIQUE,
       description TEXT DEFAULT 'tbd',
       apparatus VARCHAR(255) DEFAULT 'tbd',
-      group VARCHAR(255) DEFAULT 'tbd',
-      imageLink VARCHAR(255) DEFAULT '/coming-soon-image.jpg',
+      course VARCHAR(255) DEFAULT 'tbd',
       videoLink VARCHAR(255) DEFAULT 'tbd'
     );
   `;
@@ -45,8 +44,8 @@ async function seedSkills() {
   const insertedSkills = await Promise.all(
     skills.map(
       (skill) => client.sql`
-        INSERT INTO skills (name, description, apparatus, className)
-        VALUES (${skill.name}, ${skill.description}, ${skill.apparatus}, ${skill.className})
+        INSERT INTO skills (name, description, apparatus, course)
+        VALUES (${skill.name}, ${skill.description}, ${skill.apparatus}, ${skill.course})
       `,
     ),
   );
@@ -64,7 +63,6 @@ async function seedDrills() {
       apparatus VARCHAR(255) DEFAULT 'tbd',
       equipment VARCHAR(255) DEFAULT 'tbd',
       purpose VARCHAR(255) NOT NULL,
-      imageLink VARCHAR(255) DEFAULT '/coming-soon-image.jpg',
       videoLink VARCHAR(255) DEFAULT 'tbd'
     );
   `;
@@ -110,15 +108,16 @@ async function seedApparatuses() {
       id SERIAL,
       apparatus VARCHAR(255) NOT NULL UNIQUE,
       description VARCHAR(255) NOT NULL,
-      imageLink VARCHAR(255) DEFAULT '/coming-soon-image.jpg'
+      type VARCHAR(255) NOT NULL,
+      imageLink VARCHAR(255)
     );
   `;
 
   const insertedApparatuses = await Promise.all(
     apparatuses.map(
       (appa) => client.sql`
-        INSERT INTO apparatuses (apparatus, description)
-        VALUES (${appa.apparatus}, ${appa.description})
+        INSERT INTO apparatuses (apparatus, description, type, imageLink)
+        VALUES (${appa.name}, ${appa.description}, ${appa.type}, ${appa.imageLink})
       `,
     ),
   );
@@ -133,10 +132,10 @@ export async function GET() {
   // });
   try {
     await client.sql`BEGIN`;
-    await seedUsers();
+    //await seedUsers();
     await seedSkills();
-    await seedDrills();
-    await seedClassNames();
+    //await seedDrills();
+    //await seedCourses();
     await seedApparatuses();
     await client.sql`COMMIT`;
 
