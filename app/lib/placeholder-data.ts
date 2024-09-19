@@ -103,79 +103,66 @@ const apparatuses = [
     name: 'Floor',
     description: 'A 12x12 meter mat with some springiness',
     type: "event",
-    imageLink: "/Floor.jpg"
   },
   {
     name: 'Vault',
     description: 'A sturdy table-like structure, typically around 1.25 meters high, with a padded surface for gymnasts to launch off',
     type: "event",
-    imageLink: "/Vault.jpg"
   },
   {
     name: 'P-Bars',
     description: 'Two parallel bars',
     type: "event",
-    imageLink: "/P-Bars.jpg"
   },
   {
     name: 'Pommel Horse',
     description: 'An apparatus featuring a horizontal bar with two handles',
     type: "event",
-    imageLink: "/Pommel-Horse.jpg"
   },
   {
     name: 'Still Rings',
     description: 'Two rings suspended from a frame',
     type: "event",
-    imageLink: "/Still-Rings.jpg"
   },
   {
     name: 'Horizontal Bar',
     description: 'A single high bar made of metal',
     type: "event",
-    imageLink: "/High-Bar.jpg"
   },
   {
     name: 'Beam',
     description: 'A narrow beam 10 cm wide and 5 meters long',
     type: "event",
-    imageLink: "/Beam.jpg"
   },
   {
     name: 'Uneven Bars',
     description: 'Two horizontal bars set at different heights',
     type: "event",
-    imageLink: "/Uneven-Bars.jpg"
   },
   {
     name: 'Ninja Rig',
     description: 'The warped wall, climbing wall, rig, and generic horizontal bar',
     type: "event",
-    imageLink: "/Ninja-Rig.jpg"
   },
   {
     name: 'Tumbl Trak',
     description: 'A long trampoline with a resi at the end.',
     type: "location",
-    imageLink: "/Tumbl-Trak.jpg"
   },
   {
     name: 'Star Bars',
     description: '4 connected, adjustable height horizontal bars. Also includes free-standing kip bars for smaller athletes.',
     type: "location",
-    imageLink: "/Star-Bars.jpg"
   },
   {
     name: 'Empty Wall',
     description: 'Any wall in the gym not blocked by equipment',
     type: "location",
-    imageLink: "/Empty-Wall.jpg"
   },
   {
     name: 'Any',
     description: 'Any empty floor space in the gym.',
     type: "location",
-    imageLink: "/any.jpg"
   },
 ];
 
@@ -220,37 +207,30 @@ const equipment = [
   {
     name: 'panel mat (any)',
     description: 'A firm, folding mat, any size or color',
-    imageLink: "/panel-mat-any.jpg"
   },
   {
     name: 'panel mat (long)',
     description: 'A blue firm, folding mat with 5 folds and 5?ft long',
-    imageLink: "/panel-mat-long.jpg"
   },
   {
     name: 'panel mat (colored)',
     description: 'A firm, folding mat, with a different color for each panel',
-    imageLink: "/panel-mat-colored.jpg"
   },
   {
     name: 'cheese mat (any)',
     description: 'A triangular-shaped mat, any size or color',
-    imageLink: "/cheese-mat-any.jpg"
   },
   {
     name: 'cheese mat (small)',
     description: 'A triangular-shaped mat, roughly 3 feet long',
-    imageLink: "/cheese-mat-small.jpg"
   },
   {
     name: 'cheese mat (folding)',
     description: 'A triangular-shaped mat, roughly 3 feet long, that folds in half',
-    imageLink: "/cheese-mat-folding.jpg"
   },
   {
     name: 'cheese mat (large)',
     description: 'A triangular-shaped mat, roughly 5 feet long',
-    imageLink: "/cheese-mat-large."
   },
 ]
 

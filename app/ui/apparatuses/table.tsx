@@ -55,7 +55,7 @@ export default async function ApparatusesTable() {
                     <tr key={apparatus.id} className="group">
                       <td className="whitespace-nowrap bg-white py-5 pl-4 pr-3 group-first-of-type:rounded-md group-last-of-type:rounded-md sm:pl-6">
                         <Image
-                            src="/coming-soon-image.png"
+                            src={`${apparatus.imageLink}`}
                             className="rounded-full"
                             alt={`image of ${apparatus.name}`}
                             width={150}

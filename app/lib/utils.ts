@@ -31,3 +31,8 @@ export const generatePagination = (currentPage: number, totalPages: number) => {
     totalPages,
   ];
 };
+
+export const formatLink = (name: string) => {
+  const replaceSpaces = name.replaceAll(' ','-');
+  return `/${replaceSpaces}.jpg`;
+}

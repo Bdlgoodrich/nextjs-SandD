@@ -6,6 +6,7 @@ import {
   Apparatus,
   Course,
 } from './definitions';
+import { formatLink } from './utils';
 
 export async function fetchCourses() {
   try {
@@ -27,6 +28,7 @@ export async function fetchCourses() {
 }
 
 export async function fetchApparatuses() {
+  let formattedName:String;
   try {
       const data = await sql<Apparatus>`
         SELECT *
@@ -35,8 +37,9 @@ export async function fetchApparatuses() {
       `;
   
       const apparatuses = data.rows.map((apparatus) => ({
+
         ...apparatus,
-        //TODO format links
+        imageLink: formatLink(apparatus.name),
       }));
   
       return apparatuses;
