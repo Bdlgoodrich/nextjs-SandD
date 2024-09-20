@@ -1,11 +1,11 @@
 import { Skill } from '@/app/lib/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
-import { fetchApparatuses, fetchCourses } from '@/app/lib/data';
+import { fetchEventApparatuses, fetchCourses } from '@/app/lib/data';
 import { createSkill } from '@/app/lib/actions';
 
 export default async function SkillsForm({ skills }: { skills: Skill[] }) {
-    const apparatuses = await fetchApparatuses();
+    const apparatuses = await fetchEventApparatuses();
     const courses = await fetchCourses();
     return (
         <form action={createSkill}>
@@ -50,68 +50,48 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                 {/* Skill Apparatuses */}
                 <div className="mb-4">
                     <label htmlFor="apparatuses" className="mb-2 block text-sm font-medium">
-                        Choose all applicable apparatuses
+                        <strong>Choose all applicable apparatuses</strong>
                     </label>
-                    <div className="relative">
-                        <select
-                            id="apparatus"
-                            name="apparatus"
-                            className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                            multiple
-                            aria-describedby="apparatus-error"
-                        >
-                            <option value="" disabled>
-                            </option>
+                    <div className="relative mt-2 rounded-md">
+                        <div className="relative">
                             {apparatuses.map((apparatus) => (
-                                <option key={apparatus.id} value={apparatus.name}>
-                                    {apparatus.name}
-                                </option>
+                                <section>
+                                    <label htmlFor={apparatus.name} className="mb-2 block text-sm font-medium">
+                                        {apparatus.name}
+                                        <input
+                                            type="checkbox"
+                                            key={apparatus.id}
+                                            id={apparatus.name}
+                                        />
+                                    </label>
+                                </section>
                             ))}
-                        </select>
+                        </div>
                     </div>
                 </div>
 
                 {/* Skill Classes */}
                 <div className="mb-4">
                     <label htmlFor="classes" className="mb-2 block text-sm font-medium">
-                        Choose all applicable classes
-                    </label>
-                    <div className="relative">
-                        <select
-                            id="course"
-                            name="course"
-                            className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                            multiple
-                            aria-describedby="classes-error"
-                        >
-                            <option value="" disabled>
-                            </option>
-                            {courses.map((course) => (
-                                <option key={course.id} value={course.name}>
-                                    {course.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
-
-                {/* Skill Image Link */}
-                {/* <div className="mb-4">
-                    <label htmlFor="skill image" className="mb-2 block text-sm font-medium">
-                        Skill Image Link
+                        <strong>Choose all applicable classes</strong>
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
-                            <input
-                                id="image"
-                                name="image"
-                                type="string"
-                                placeholder="Enter an image link"
-                                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                            />
+                            {courses.map((course) => (
+                                <section>
+                                    <label htmlFor={course.name} className="mb-2 block text-sm font-medium">
+                                        {course.name}
+                                        <input
+                                            type="checkbox"
+                                            key={course.id}
+                                            id={course.name}
+                                        />
+                                    </label>
+                                </section>
+                            ))}
                         </div>
                     </div>
-                </div> */}
+                </div>
 
                 {/* Skill Video Link */}
                 {/* <div className="mb-4">

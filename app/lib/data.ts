@@ -49,6 +49,29 @@ export async function fetchApparatuses() {
   }
 }
 
+export async function fetchEventApparatuses() {
+  let formattedName:String;
+  try {
+      const data = await sql<Apparatus>`
+        SELECT *
+        FROM apparatuses
+        WHERE type = 'event'
+        ORDER BY apparatuses.name ASC;
+      `;
+  
+      const apparatuses = data.rows.map((apparatus) => ({
+
+        ...apparatus,
+        imageLink: formatLink(apparatus.name),
+      }));
+  
+      return apparatuses;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch class list.');
+  }
+}
+
 export async function fetchSkills() {
   try {
       const data = await sql<Skill>`

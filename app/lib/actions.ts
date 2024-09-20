@@ -16,12 +16,12 @@ export async function createSkill(formData: FormData) {
     const { name, description, apparatus, course } = CreateSkill.parse({
     name: formData.get('name'),
     description: formData.get('description'),
-    apparatus: formData.get('apparatus'),
-    course: formData.get('course'),
+    apparatus: formData.getAll('apparatus').toString(),
+    course: formData.getAll('course').toString(),
     });
   const formattedApparatus = apparatus.replaceAll('&',' , ');
   const formattedCourse = course.replaceAll('&',' , ');
-  console.log('name:'+name + ' description:'+description + ' apparatuses'+apparatus + ' or ' +formattedApparatus + ' courses:'+ course+' or ' +formattedCourse);
+  console.log('name:'+ name + ' description:'+ description + ' apparatuses:'+ apparatus + ' courses:'+ course);
 
 //   await sql`
 //     INSERT INTO invoices (name, description, apparatus, course)
