@@ -27,6 +27,26 @@ export async function fetchCourses() {
 }
 }
 
+export async function fetchCourseNames() {
+  let formattedName:String;
+  try {
+      const data = await sql<Course>`
+        SELECT name
+        FROM courses
+        ORDER BY courses.name ASC;
+      `;
+  
+      const courses = data.rows.map((course) => ({
+        ...course,
+      }));
+      return courses.map((apparatus) => apparatus.name);
+
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch apparatus names.');
+  }
+}
+
 export async function fetchApparatuses() {
   let formattedName:String;
   try {
@@ -69,6 +89,26 @@ export async function fetchEventApparatuses() {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch class list.');
+  }
+}
+
+export async function fetchEventApparatusNames() {
+  let formattedName:String;
+  try {
+      const data = await sql<Apparatus>`
+        SELECT name
+        FROM apparatuses
+        WHERE type = 'event'
+        ORDER BY apparatuses.name ASC;
+      `;
+      const apparatuses = data.rows.map((apparatus) => ({
+        ...apparatus,
+      }));
+      return apparatuses.map((apparatus) => apparatus.name);
+
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch apparatus names.');
   }
 }
 

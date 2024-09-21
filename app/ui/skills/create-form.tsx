@@ -59,9 +59,11 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                                     <label htmlFor={apparatus.name} className="mb-2 block text-sm font-medium">
                                         {apparatus.name}
                                         <input
+                                            id={apparatus.name}
+                                            name={apparatus.name}
                                             type="checkbox"
                                             key={apparatus.id}
-                                            id={apparatus.name}
+                                            
                                         />
                                     </label>
                                 </section>
@@ -85,6 +87,7 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                                             type="checkbox"
                                             key={course.id}
                                             id={course.name}
+                                            name={course.name}
                                         />
                                     </label>
                                 </section>

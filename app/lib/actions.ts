@@ -1,6 +1,7 @@
 'use server';
 import { z } from 'zod';
 import { sql } from '@vercel/postgres';
+import { fetchCourseNames, fetchEventApparatuses, fetchEventApparatusNames } from './data';
  
 const SkillFormSchema = z.object({
   id: z.string(),
@@ -13,20 +14,35 @@ const SkillFormSchema = z.object({
 const CreateSkill = SkillFormSchema.omit({ id: true });
  
 export async function createSkill(formData: FormData) {
+  const eventNames = await fetchEventApparatusNames();
+  let apparatuses = "";
+  eventNames.map((name) => {
+    const status = formData.get(`${name}`);
+    if (status === "on") apparatuses += `${name}, `;
+  })
+  let lastComma = apparatuses.lastIndexOf(',');
+  const formattedApparatuses = apparatuses.slice(0,lastComma);
+
+  const courseNames = await fetchCourseNames();
+  let courses = "";
+  courseNames.map((name) => {
+    const status = formData.get(`${name}`);
+    if (status == "on") courses += `${name}, `;
+  })
+  lastComma = courses.lastIndexOf(',');
+  const formattedCourses = courses.slice(0,lastComma);
+
     const { name, description, apparatus, course } = CreateSkill.parse({
     name: formData.get('name'),
     description: formData.get('description'),
-    apparatus: formData.getAll('apparatus').toString(),
-    course: formData.getAll('course').toString(),
+    apparatus: formattedApparatuses,
+    course: formattedCourses,
     });
-  const formattedApparatus = apparatus.replaceAll('&',' , ');
-  const formattedCourse = course.replaceAll('&',' , ');
-  console.log('name:'+ name + ' description:'+ description + ' apparatuses:'+ apparatus + ' courses:'+ course);
 
-//   await sql`
-//     INSERT INTO invoices (name, description, apparatus, course)
-//     VALUES (${name}, ${description}, ${formattedApparatus}, ${formattedCourse})
-//   `;
+  // await sql`
+  //   INSERT INTO skills (name, description, apparatus, course)
+  //   VALUES (${name}, ${description}, ${formattedApparatuses}, ${formattedCourses})
+  // `;
 }
 
 export async function createDrill(formData: FormData) {
