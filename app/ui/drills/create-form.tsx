@@ -72,38 +72,38 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
 
                 {/* Drill Apparatus */}
                 <div className="mb-4">
-                    <label htmlFor="apparatus" className="mb-2 block text-sm font-medium">
-                        Choose the apparatuse/location needed
+                    <label htmlFor="apparatuses" className="mb-2 block text-sm font-medium">
+                        <strong>Choose all applicable apparatuses</strong>
                     </label>
-                    <div className="relative">
-                        <select
-                            id="apparatus"
-                            name="apparatus"
-                            className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                            aria-describedby="apparatus-error"
-                        >
-                            <option value="" disabled>
-                                select an apparatus
-                            </option>
+                    <div className="relative mt-2 rounded-md">
+                        <div className="relative">
                             {apparatuses.map((apparatus) => (
-                                <option key={apparatus.id} value={apparatus.id}>
-                                    {apparatus.name}
-                                </option>
+                                <section>
+                                    <label htmlFor={apparatus.name} className="mb-2 block text-sm font-medium">
+                                        {apparatus.name}
+                                        <input
+                                            id={apparatus.name}
+                                            name={apparatus.name}
+                                            type="checkbox"
+                                            key={apparatus.id}   
+                                        />
+                                    </label>
+                                </section>
                             ))}
-                        </select>
+                        </div>
                     </div>
                 </div>
 
                 {/* Drill Equipment */}
                 <div className="mb-4">
-                    <label htmlFor="description" className="mb-2 block text-sm font-medium">
+                    <label htmlFor="equipment" className="mb-2 block text-sm font-medium">
                         List all additional required equipment, separated by commas
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
                             <input
-                                id="description"
-                                name="description"
+                                id="equipment"
+                                name="equipment"
                                 type="string"
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />
@@ -111,26 +111,8 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
                     </div>
                 </div>
 
-                {/* Drill Image Link */}
-                {/* <div className="mb-4">
-                    <label htmlFor="drill image" className="mb-2 block text-sm font-medium">
-                        Drill Image Link
-                    </label>
-                    <div className="relative mt-2 rounded-md">
-                        <div className="relative">
-                            <input
-                                id="image"
-                                name="image"
-                                type="string"
-                                placeholder="Enter an image link"
-                                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                            />
-                        </div>
-                    </div>
-                </div> */}
-
                 {/* Drill Video Link */}
-                {/* <div className="mb-4">
+                <div className="mb-4">
                     <label htmlFor="drill video link" className="mb-2 block text-sm font-medium">
                         Drill Video Link
                     </label>
@@ -145,7 +127,8 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
                             />
                         </div>
                     </div>
-                </div> */}
+                </div>
+
             </div>
             <div className="mt-6 flex justify-end gap-4">
                 <Link

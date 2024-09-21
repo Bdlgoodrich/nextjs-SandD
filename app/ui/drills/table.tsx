@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { UpdateDrill } from '@/app/ui/drills/buttons';
-import { fetchFilteredDrills } from '@/app/lib/data';
+import { fetchFilteredDrills, fetchDrills } from '@/app/lib/data';
 
 export default async function DrillsTable({
   query,
@@ -9,7 +9,7 @@ export default async function DrillsTable({
   query: string;
   currentPage: number;
 }) {
-  const drills = await fetchFilteredDrills(query, currentPage);
+  const drills = await fetchDrills();
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">

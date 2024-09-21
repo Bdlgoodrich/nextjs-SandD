@@ -135,6 +135,25 @@ export async function fetchEventApparatuses() {
   }
 }
 
+export async function fetchApparatusNames() {
+  let formattedName:String;
+  try {
+      const data = await sql<Apparatus>`
+        SELECT name
+        FROM apparatuses
+        ORDER BY apparatuses.name ASC;
+      `;
+      const apparatuses = data.rows.map((apparatus) => ({
+        ...apparatus,
+      }));
+      return apparatuses.map((apparatus) => apparatus.name);
+
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch event apparatus names.');
+  }
+}
+
 export async function fetchEventApparatusNames() {
   let formattedName:String;
   try {
@@ -201,7 +220,8 @@ export async function fetchFilteredSkills(query: string, currentPage: number) {
 
 export async function fetchSkillsPages(query: string) {
   try {
-    const count = await sql`SELECT COUNT(*)
+    const count = await sql`
+    SELECT COUNT(*)
     FROM skills
     WHERE
       skills.name ILIKE ${`%${query}%`} OR
@@ -265,18 +285,19 @@ export async function fetchFilteredDrills(query: string, currentPage: number) {
     WHERE
       drills.skill ILIKE ${`%${query}%`} OR
       drills.description ILIKE ${`%${query}%`} OR
-      drills.equipment ILIKE ${`%${query}%`} OR
+      drills.instructions ILIKE ${`%${query}%`} OR
       drills.apparatus ILIKE ${`%${query}%`} OR
-      drills.equipment ILIKE ${`%${query}%`}
+      drills.equipment ILIKE ${`%${query}%`} OR
+      drills.purpose ILIKE ${`%${query}%`}
       ORDER BY drills.name ASC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
 	  `;
 
-    const drills = data.rows.map((result) => ({
+    return data.rows.map((result) => ({
       ...result,
     }));
 
-    return drills;
+    //return drills;
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch filtered drills.');
@@ -285,14 +306,16 @@ export async function fetchFilteredDrills(query: string, currentPage: number) {
 
 export async function fetchDrillsPages(query: string) {
   try {
-    const count = await sql`SELECT COUNT(*)
+    const count = await sql`
+    SELECT COUNT(*)
     FROM drills
     WHERE
       drills.skill ILIKE ${`%${query}%`} OR
       drills.description ILIKE ${`%${query}%`} OR
       drills.instructions ILIKE ${`%${query}%`} OR
       drills.apparatus ILIKE ${`%${query}%`} OR
-      drills.equipment ILIKE ${`%${query}%`}
+      drills.equipment ILIKE ${`%${query}%`} OR
+      drills.purpose ILIKE ${`%${query}%`}
   `;
 
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);

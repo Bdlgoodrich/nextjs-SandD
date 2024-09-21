@@ -1,10 +1,10 @@
 'use server';
 import { z } from 'zod';
 import { sql } from '@vercel/postgres';
-import { fetchCourseNames, fetchEventApparatuses, fetchEventApparatusNames } from './data';
+import { fetchApparatusNames, fetchCourseNames, fetchEventApparatusNames } from './data';
  
 const SkillFormSchema = z.object({
-  id: z.string(),
+  id: z.number(),
   name: z.string(),
   description: z.string(),
   apparatus: z.string(),
@@ -39,20 +39,52 @@ export async function createSkill(formData: FormData) {
     course: formattedCourses,
     });
 
+    const lowercaseName = name.toLowerCase();
+
   // await sql`
   //   INSERT INTO skills (name, description, apparatus, course)
-  //   VALUES (${name}, ${description}, ${formattedApparatuses}, ${formattedCourses})
+  //   VALUES (${lowercaseName}, ${description}, ${apparatus}, ${course})
   // `;
 }
 
+
+
+
+const DrillFormSchema = z.object({
+  id: z.number(),
+  skill: z.string(),
+  description: z.string(),
+  instructions: z.string(),
+  apparatus: z.string(),
+  equipment: z.string(),
+  purpose: z.string(),
+  videoLink: z.string()
+});
+ 
+const CreateDrill = DrillFormSchema.omit({ id: true });
+ 
 export async function createDrill(formData: FormData) {
-    const rawFormData = {
-      skill: formData.get('skill'),
-      description: formData.get('description'),
-      instructions: formData.get('instructions'),
-      apparatus: formData.get('apparatus'),
-      equipment: formData.get('equipment'),
-    };
-    // Test it out:
-    console.log(rawFormData);
-  }
+  const apparatusNames = await fetchApparatusNames();
+  let apparatuses = "";
+  apparatusNames.map((name) => {
+    const status = formData.get(`${name}`);
+    if (status === "on") apparatuses += `${name}, `;
+  })
+  let lastComma = apparatuses.lastIndexOf(',');
+  const formattedApparatuses = apparatuses.slice(0,lastComma);
+
+    const { skill, description, instructions, apparatus, equipment, purpose, videoLink} = CreateDrill.parse({
+    skill: formData.get('skill'),
+    description: formData.get('description'),
+    instructions: formData.get('instructions'),
+    apparatus: formattedApparatuses,
+    equipment: formData.get('instructions'),
+    purpose: formData.get('purpose'),
+    videoLink: formData.get('videoLink')
+    });
+
+  await sql`
+    INSERT INTO drills (skill, description, instruction, apparatus, equipment, purpose, videolink)
+    VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
+  `;
+}
