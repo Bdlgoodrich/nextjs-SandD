@@ -23,10 +23,10 @@ export async function fetchCourses() {
     }));
 
     return courses;
-} catch (error) {
-  console.error('Database Error:', error);
-  throw new Error('Failed to fetch class list.');
-}
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch class list.');
+  }
 }
 
 export async function fetchFilteredCourses(query: string, currentPage: number) {
@@ -54,18 +54,18 @@ export async function fetchFilteredCourses(query: string, currentPage: number) {
 }
 
 export async function fetchCourseNames() {
-  let formattedName:String;
+  let formattedName: String;
   try {
-      const data = await sql<Course>`
+    const data = await sql<Course>`
         SELECT name
         FROM courses
         ORDER BY courses.name ASC;
       `;
-  
-      const courses = data.rows.map((course) => ({
-        ...course,
-      }));
-      return courses.map((apparatus) => apparatus.name);
+
+    const courses = data.rows.map((course) => ({
+      ...course,
+    }));
+    return courses.map((apparatus) => apparatus.name);
 
   } catch (error) {
     console.error('Database Error:', error);
@@ -91,21 +91,21 @@ export async function fetchCoursesPages(query: string) {
 }
 
 export async function fetchApparatuses() {
-  let formattedName:String;
+  let formattedName: String;
   try {
-      const data = await sql<Apparatus>`
+    const data = await sql<Apparatus>`
         SELECT *
         FROM apparatuses
         ORDER BY apparatuses.name ASC;
       `;
-  
-      const apparatuses = data.rows.map((apparatus) => ({
 
-        ...apparatus,
-        imageLink: formatLink(apparatus.name),
-      }));
-  
-      return apparatuses;
+    const apparatuses = data.rows.map((apparatus) => ({
+
+      ...apparatus,
+      imageLink: formatLink(apparatus.name),
+    }));
+
+    return apparatuses;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch apparatus list.');
@@ -113,22 +113,22 @@ export async function fetchApparatuses() {
 }
 
 export async function fetchEventApparatuses() {
-  let formattedName:String;
+  let formattedName: String;
   try {
-      const data = await sql<Apparatus>`
+    const data = await sql<Apparatus>`
         SELECT *
         FROM apparatuses
         WHERE type = 'event'
         ORDER BY apparatuses.name ASC;
       `;
-  
-      const apparatuses = data.rows.map((apparatus) => ({
 
-        ...apparatus,
-        imageLink: formatLink(apparatus.name),
-      }));
-  
-      return apparatuses;
+    const apparatuses = data.rows.map((apparatus) => ({
+
+      ...apparatus,
+      imageLink: formatLink(apparatus.name),
+    }));
+
+    return apparatuses;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch event apparatus list.');
@@ -136,17 +136,17 @@ export async function fetchEventApparatuses() {
 }
 
 export async function fetchApparatusNames() {
-  let formattedName:String;
+  let formattedName: String;
   try {
-      const data = await sql<Apparatus>`
+    const data = await sql<Apparatus>`
         SELECT name
         FROM apparatuses
         ORDER BY apparatuses.name ASC;
       `;
-      const apparatuses = data.rows.map((apparatus) => ({
-        ...apparatus,
-      }));
-      return apparatuses.map((apparatus) => apparatus.name);
+    const apparatuses = data.rows.map((apparatus) => ({
+      ...apparatus,
+    }));
+    return apparatuses.map((apparatus) => apparatus.name);
 
   } catch (error) {
     console.error('Database Error:', error);
@@ -155,18 +155,18 @@ export async function fetchApparatusNames() {
 }
 
 export async function fetchEventApparatusNames() {
-  let formattedName:String;
+  let formattedName: String;
   try {
-      const data = await sql<Apparatus>`
+    const data = await sql<Apparatus>`
         SELECT name
         FROM apparatuses
         WHERE type = 'event'
         ORDER BY apparatuses.name ASC;
       `;
-      const apparatuses = data.rows.map((apparatus) => ({
-        ...apparatus,
-      }));
-      return apparatuses.map((apparatus) => apparatus.name);
+    const apparatuses = data.rows.map((apparatus) => ({
+      ...apparatus,
+    }));
+    return apparatuses.map((apparatus) => apparatus.name);
 
   } catch (error) {
     console.error('Database Error:', error);
@@ -176,16 +176,16 @@ export async function fetchEventApparatusNames() {
 
 export async function fetchSkills() {
   try {
-      const data = await sql<Skill>`
+    const data = await sql<Skill>`
         SELECT *
         FROM skills;
       `;
-  
-      const skills = data.rows.map((skill) => ({
-        ...skill,
-      }));
-  
-      return skills;
+
+    const skills = data.rows.map((skill) => ({
+      ...skill,
+    }));
+
+    return skills;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch skills list.');
@@ -260,16 +260,16 @@ export async function fetchSkillById(id: string) {
 
 export async function fetchDrills() {
   try {
-      const data = await sql<Drill>`
-        SELECT *
-        FROM drills;
-      `;
-  
-      const drills = data.rows.map((drill) => ({
-        ...drill,
-      }));
-  
-      return drills;
+    const data = await sql<Drill>`
+      SELECT *
+      FROM drills
+    `;
+
+    const drills = data.rows.map((drill) => ({
+      ...drill,
+    }));
+
+    return drills;
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch drills list.');
@@ -283,13 +283,13 @@ export async function fetchFilteredDrills(query: string, currentPage: number) {
 		SELECT *
 		FROM drills
     WHERE
-      drills.skill ILIKE ${`%${query}%`} OR
-      drills.description ILIKE ${`%${query}%`} OR
-      drills.instructions ILIKE ${`%${query}%`} OR
-      drills.apparatus ILIKE ${`%${query}%`} OR
-      drills.equipment ILIKE ${`%${query}%`} OR
-      drills.purpose ILIKE ${`%${query}%`}
-      ORDER BY drills.name ASC
+      TRIM(skill) ILIKE ${`%${query}%`} OR
+      TRIM(description) ILIKE ${`%${query}%`} OR
+      TRIM(instructions) ILIKE ${`%${query}%`} OR
+      TRIM(apparatus) ILIKE ${`%${query}%`} OR
+      TRIM(equipment) ILIKE ${`%${query}%`} OR
+      TRIM(purpose) ILIKE ${`%${query}%`}
+      ORDER BY skill ASC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
 	  `;
 

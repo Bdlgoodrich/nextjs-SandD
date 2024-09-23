@@ -9,7 +9,8 @@ export default async function DrillsTable({
   query: string;
   currentPage: number;
 }) {
-  const drills = await fetchDrills();
+  const drills = await fetchFilteredDrills(query, currentPage);
+  //query, currentPage
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
