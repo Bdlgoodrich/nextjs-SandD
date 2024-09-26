@@ -1,38 +1,43 @@
-import { Skill } from '@/app/lib/definitions';
+import { Drill } from '@/app/lib/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
-import { fetchEventApparatuses, fetchCourses } from '@/app/lib/data';
-import { createSkill } from '@/app/lib/actions';
+import { fetchApparatuses, fetchSkills } from '@/app/lib/data';
 
-export default async function SkillsForm({ skills }: { skills: Skill[] }) {
-    const apparatuses = await fetchEventApparatuses();
-    const courses = await fetchCourses();
+export default async function EditDrillsForm({ drill }: { drill: Drill }) {
+    const apparatuses = await fetchApparatuses();
+    const skills = await fetchSkills();
     return (
-        <form action={createSkill}>
+        <form>
             <div className="rounded-md bg-gray-50 p-4 md:p-6">
 
-                {/* Skill Name */}
+                {/* Skill */}
                 <div className="mb-4">
-                    <label htmlFor="name" className="mb-2 block text-sm font-medium">
-                        Skill Name
+                    <label htmlFor="skill" className="mb-2 block text-sm font-medium">
+                        Choose the skill that the drill will train
                     </label>
-                    <div className="relative mt-2 rounded-md">
-                        <div className="relative">
-                            <input
-                                id="name"
-                                name="name"
-                                type="string"
-                                placeholder="Enter the skill name"
-                                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                            />
-                        </div>
+                    <div className="relative">
+                        <select
+                            id="skill"
+                            name="skill"
+                            className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                            aria-describedby="skill-error"
+                        >
+                            <option value="" disabled>
+                                select a skill
+                            </option>
+                            {skills.map((skill) => (
+                                <option key={skill.id} value={skill.id}>
+                                    {skill.name}
+                                </option>
+                            ))}
+                        </select>
                     </div>
                 </div>
 
-                {/* Skill Description */}
+                {/* Drill Description */}
                 <div className="mb-4">
-                    <label htmlFor="description" className="mb-2 block text-sm font-medium">
-                        Description
+                    <label htmlFor="name" className="mb-2 block text-sm font-medium">
+                        Drill Description
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
@@ -40,14 +45,32 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                                 id="description"
                                 name="description"
                                 type="string"
-                                placeholder="Write a brief description"
+                                defaultValue={drill.description}
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />
                         </div>
                     </div>
                 </div>
 
-                {/* Skill Apparatuses */}
+                {/* Drill Instructions */}
+                <div className="mb-4">
+                    <label htmlFor="instructions" className="mb-2 block text-sm font-medium">
+                        Write any instructions for the drill
+                    </label>
+                    <div className="relative mt-2 rounded-md">
+                        <div className="relative">
+                            <input
+                                id="instructions"
+                                name="instructions"
+                                type="string"
+                                defaultValue={drill.instructions}
+                                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Drill Apparatus */}
                 <div className="mb-4">
                     <label htmlFor="apparatuses" className="mb-2 block text-sm font-medium">
                         <strong>Choose all applicable apparatuses</strong>
@@ -62,8 +85,7 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                                             id={apparatus.name}
                                             name={apparatus.name}
                                             type="checkbox"
-                                            key={apparatus.id}
-                                            
+                                            key={apparatus.id}   
                                         />
                                     </label>
                                 </section>
@@ -72,34 +94,28 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                     </div>
                 </div>
 
-                {/* Skill Classes */}
+                {/* Drill Equipment */}
                 <div className="mb-4">
-                    <label htmlFor="classes" className="mb-2 block text-sm font-medium">
-                        <strong>Choose all applicable classes</strong>
+                    <label htmlFor="equipment" className="mb-2 block text-sm font-medium">
+                        List all additional required equipment, separated by commas
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
-                            {courses.map((course) => (
-                                <section>
-                                    <label htmlFor={course.name} className="mb-2 block text-sm font-medium">
-                                        {course.name}
-                                        <input
-                                            type="checkbox"
-                                            key={course.id}
-                                            id={course.name}
-                                            name={course.name}
-                                        />
-                                    </label>
-                                </section>
-                            ))}
+                            <input
+                                id="equipment"
+                                name="equipment"
+                                type="string"
+                                defaultValue={drill.equipment}
+                                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                            />
                         </div>
                     </div>
                 </div>
 
-                {/* Skill Video Link */}
+                {/* Drill Video Link */}
                 <div className="mb-4">
-                    <label htmlFor="skill video link" className="mb-2 block text-sm font-medium">
-                        Skill Video Link
+                    <label htmlFor="drill video link" className="mb-2 block text-sm font-medium">
+                        Drill Video Link
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
@@ -107,22 +123,22 @@ export default async function SkillsForm({ skills }: { skills: Skill[] }) {
                                 id="videoLink"
                                 name="videoLink"
                                 type="string"
-                                placeholder="Enter a url"
+                                defaultValue={drill.videoLink}
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div className="mt-6 flex justify-end gap-4">
                 <Link
-                    href="/home/skills"
+                    href="/home/drills"
                     className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
                 >
                     Cancel
                 </Link>
-                <Button type="submit">Create Skill</Button>
+                <Button type="submit">Create Drill</Button>
             </div>
         </form>
     );

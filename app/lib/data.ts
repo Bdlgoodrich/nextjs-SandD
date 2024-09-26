@@ -96,7 +96,7 @@ export async function fetchApparatuses() {
     const data = await sql<Apparatus>`
         SELECT *
         FROM apparatuses
-        ORDER BY apparatuses.name ASC;
+        ORDER BY name ASC;
       `;
 
     const apparatuses = data.rows.map((apparatus) => ({
@@ -113,13 +113,12 @@ export async function fetchApparatuses() {
 }
 
 export async function fetchEventApparatuses() {
-  let formattedName: String;
   try {
     const data = await sql<Apparatus>`
         SELECT *
         FROM apparatuses
         WHERE type = 'event'
-        ORDER BY apparatuses.name ASC;
+        ORDER BY name ASC;
       `;
 
     const apparatuses = data.rows.map((apparatus) => ({
@@ -243,7 +242,7 @@ export async function fetchSkillById(id: string) {
     const data = await sql<Skill>`
       SELECT *
       FROM skills
-      WHERE skill.id = ${id};
+      WHERE id = ${id};
     `;
 
     const skill = data.rows.map((skill) => ({

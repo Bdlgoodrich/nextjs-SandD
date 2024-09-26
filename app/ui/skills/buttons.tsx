@@ -16,7 +16,7 @@ export function CreateSkill() {
 export function UpdateSkill({ id }: { id: number }) {
   return (
     <Link
-      href="/home/skills/update"
+    href={`/home/skills/${id}/edit`}
       className="rounded-md border p-2 hover:bg-gray-100"
     >
       <PencilIcon className="w-5" />
