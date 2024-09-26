@@ -4,7 +4,7 @@ import { sql } from '@vercel/postgres';
 import { fetchApparatusNames, fetchCourseNames, fetchEventApparatusNames } from './data';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
- 
+
 const SkillFormSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -12,9 +12,9 @@ const SkillFormSchema = z.object({
   apparatus: z.string(),
   course: z.string(),
 });
- 
+
 const CreateSkill = SkillFormSchema.omit({ id: true });
- 
+
 export async function createSkill(formData: FormData) {
   const eventNames = await fetchEventApparatusNames();
   let apparatuses = "";
@@ -23,7 +23,7 @@ export async function createSkill(formData: FormData) {
     if (status === "on") apparatuses += `${name}, `;
   })
   let lastComma = apparatuses.lastIndexOf(',');
-  const formattedApparatuses = apparatuses.slice(0,lastComma);
+  const formattedApparatuses = apparatuses.slice(0, lastComma);
 
   const courseNames = await fetchCourseNames();
   let courses = "";
@@ -32,21 +32,27 @@ export async function createSkill(formData: FormData) {
     if (status == "on") courses += `${name}, `;
   })
   lastComma = courses.lastIndexOf(',');
-  const formattedCourses = courses.slice(0,lastComma);
+  const formattedCourses = courses.slice(0, lastComma);
 
-    const { name, description, apparatus, course } = CreateSkill.parse({
+  const { name, description, apparatus, course } = CreateSkill.parse({
     name: formData.get('name'),
     description: formData.get('description'),
     apparatus: formattedApparatuses,
     course: formattedCourses,
-    });
+  });
 
-    const lowercaseName = name.toLowerCase();
+  const lowercaseName = name.toLowerCase();
 
-  // await sql`
-  //   INSERT INTO skills (name, description, apparatus, course)
-  //   VALUES (${lowercaseName}, ${description}, ${apparatus}, ${course})
-  // `;
+  try {
+    await sql`
+    // INSERT INTO skills (name, description, apparatus, course)
+    // VALUES (${lowercaseName}, ${description}, ${apparatus}, ${course})
+  `;
+  } catch (error) {
+    return {
+      message: 'Database Error: Failed to Create Skill.',
+    };
+  }
 
   revalidatePath('/home/skills');
   redirect('/home/skills');
@@ -63,7 +69,7 @@ export async function updateSkill(formData: FormData) {
     if (status === "on") apparatuses += `${name}, `;
   })
   let lastComma = apparatuses.lastIndexOf(',');
-  const formattedApparatuses = apparatuses.slice(0,lastComma);
+  const formattedApparatuses = apparatuses.slice(0, lastComma);
 
   const courseNames = await fetchCourseNames();
   let courses = "";
@@ -72,24 +78,29 @@ export async function updateSkill(formData: FormData) {
     if (status == "on") courses += `${name}, `;
   })
   lastComma = courses.lastIndexOf(',');
-  const formattedCourses = courses.slice(0,lastComma);
+  const formattedCourses = courses.slice(0, lastComma);
 
-const { id, name, description, apparatus, course } = UpdateSkill.parse({
-  id: formData.get('id'),
-  name: formData.get('name'),
-  description: formData.get('description'),
-  apparatus: formattedApparatuses,
-  course: formattedCourses,
+  const { id, name, description, apparatus, course } = UpdateSkill.parse({
+    id: formData.get('id'),
+    name: formData.get('name'),
+    description: formData.get('description'),
+    apparatus: formattedApparatuses,
+    course: formattedCourses,
   });
 
   const lowercaseName = name.toLowerCase();
- 
-  // await sql`
-  //   UPDATE skills
-  //   SET name=${lowercaseName}, description=${description}, apparatus=${apparatus}, course=${course}
-  //   WHERE id = ${id}
-  // `;
- 
+  try {
+    // await sql`
+    //   UPDATE skills
+    //   SET name=${lowercaseName}, description=${description}, apparatus=${apparatus}, course=${course}
+    //   WHERE id = ${id}
+    // `;
+  } catch (error) {
+    return {
+      message: 'Database Error: Failed to Update Skill.',
+    };
+  }
+
   revalidatePath('/home/skills');
   redirect('/home/skills');
 }
@@ -106,9 +117,9 @@ const DrillFormSchema = z.object({
   purpose: z.string(),
   videoLink: z.string()
 });
- 
+
 const CreateDrill = DrillFormSchema.omit({ id: true });
- 
+
 export async function createDrill(formData: FormData) {
   const apparatusNames = await fetchApparatusNames();
   let apparatuses = "";
@@ -117,9 +128,9 @@ export async function createDrill(formData: FormData) {
     if (status === "on") apparatuses += `${name}, `;
   })
   let lastComma = apparatuses.lastIndexOf(',');
-  const formattedApparatuses = apparatuses.slice(0,lastComma);
+  const formattedApparatuses = apparatuses.slice(0, lastComma);
 
-    const { skill, description, instructions, apparatus, equipment, purpose, videoLink} = CreateDrill.parse({
+  const { skill, description, instructions, apparatus, equipment, purpose, videoLink } = CreateDrill.parse({
     skill: formData.get('skill'),
     description: formData.get('description'),
     instructions: formData.get('instructions'),
@@ -127,12 +138,18 @@ export async function createDrill(formData: FormData) {
     equipment: formData.get('instructions'),
     purpose: formData.get('purpose'),
     videoLink: formData.get('videoLink')
-    });
+  });
 
+try{
   // await sql`
   //   INSERT INTO drills (skill, description, instruction, apparatus, equipment, purpose, videolink)
   //   VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
   // `;
+}catch (error) {
+  return {
+    message: 'Database Error: Failed to Create Drill.',
+  };
+}
 }
 
 const UpdateDrill = DrillFormSchema;
@@ -145,9 +162,9 @@ export async function updateDrill(formData: FormData) {
     if (status === "on") apparatuses += `${name}, `;
   })
   let lastComma = apparatuses.lastIndexOf(',');
-  const formattedApparatuses = apparatuses.slice(0,lastComma);
+  const formattedApparatuses = apparatuses.slice(0, lastComma);
 
-    const { id, skill, description, instructions, apparatus, equipment, purpose, videoLink} = UpdateDrill.parse({
+  const { id, skill, description, instructions, apparatus, equipment, purpose, videoLink } = UpdateDrill.parse({
     id: formData.get('id'),
     skill: formData.get('skill'),
     description: formData.get('description'),
@@ -156,10 +173,16 @@ export async function updateDrill(formData: FormData) {
     equipment: formData.get('equipment'),
     purpose: formData.get('purpose'),
     videoLink: formData.get('videoLink')
-    });
+  });
 
+  try{
   // await sql`
   //   INSERT INTO drills (skill, description, instruction, apparatus, equipment, purpose, videolink)
   //   VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
   // `;
+}catch (error) {
+  return {
+    message: 'Database Error: Failed to Update Drill.',
+  };
+}
 }
