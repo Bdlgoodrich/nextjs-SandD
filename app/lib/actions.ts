@@ -129,8 +129,37 @@ export async function createDrill(formData: FormData) {
     videoLink: formData.get('videoLink')
     });
 
-  await sql`
-    INSERT INTO drills (skill, description, instruction, apparatus, equipment, purpose, videolink)
-    VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
-  `;
+  // await sql`
+  //   INSERT INTO drills (skill, description, instruction, apparatus, equipment, purpose, videolink)
+  //   VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
+  // `;
+}
+
+const UpdateDrill = DrillFormSchema;
+
+export async function updateDrill(formData: FormData) {
+  const apparatusNames = await fetchApparatusNames();
+  let apparatuses = "";
+  apparatusNames.map((name) => {
+    const status = formData.get(`${name}`);
+    if (status === "on") apparatuses += `${name}, `;
+  })
+  let lastComma = apparatuses.lastIndexOf(',');
+  const formattedApparatuses = apparatuses.slice(0,lastComma);
+
+    const { id, skill, description, instructions, apparatus, equipment, purpose, videoLink} = UpdateDrill.parse({
+    id: formData.get('id'),
+    skill: formData.get('skill'),
+    description: formData.get('description'),
+    instructions: formData.get('instructions'),
+    apparatus: formattedApparatuses,
+    equipment: formData.get('equipment'),
+    purpose: formData.get('purpose'),
+    videoLink: formData.get('videoLink')
+    });
+
+  // await sql`
+  //   INSERT INTO drills (skill, description, instruction, apparatus, equipment, purpose, videolink)
+  //   VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
+  // `;
 }

@@ -8,6 +8,8 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
     const skills = await fetchSkills();
     return (
         <form>
+            <input type="hidden" id="name" name="id" value={drill.id} />
+            
             <div className="rounded-md bg-gray-50 p-4 md:p-6">
 
                 {/* Skill */}
