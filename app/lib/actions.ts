@@ -44,10 +44,11 @@ export async function createSkill(formData: FormData) {
   const lowercaseName = name.toLowerCase();
 
   try {
-    await sql`
-    // INSERT INTO skills (name, description, apparatus, course)
-    // VALUES (${lowercaseName}, ${description}, ${apparatus}, ${course})
-  `;
+    await sql `ERROR`;
+  //   await sql`
+  //   INSERT INTO skills (name, description, apparatus, course)
+  //   VALUES (${lowercaseName}, ${description}, ${apparatus}, ${course})
+  // `;
   } catch (error) {
     return {
       message: 'Database Error: Failed to Create Skill.',
@@ -90,6 +91,7 @@ export async function updateSkill(formData: FormData) {
 
   const lowercaseName = name.toLowerCase();
   try {
+    await sql `ERROR`;
     // await sql`
     //   UPDATE skills
     //   SET name=${lowercaseName}, description=${description}, apparatus=${apparatus}, course=${course}
@@ -141,6 +143,7 @@ export async function createDrill(formData: FormData) {
   });
 
 try{
+  await sql `ERROR`;
   // await sql`
   //   INSERT INTO drills (skill, description, instruction, apparatus, equipment, purpose, videolink)
   //   VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
@@ -176,6 +179,7 @@ export async function updateDrill(formData: FormData) {
   });
 
   try{
+    await sql `ERROR`;
   // await sql`
   //   INSERT INTO drills (skill, description, instruction, apparatus, equipment, purpose, videolink)
   //   VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
