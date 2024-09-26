@@ -51,7 +51,7 @@ export async function createSkill(formData: FormData) {
   // `;
   } catch (error) {
     return {
-      message: 'Database Error: Failed to Create Skill.',
+      message: 'Error: You are not authorized to alter the database.',
     };
   }
 
@@ -99,7 +99,7 @@ export async function updateSkill(formData: FormData) {
     // `;
   } catch (error) {
     return {
-      message: 'Database Error: Failed to Update Skill.',
+      message: 'Error: You are not authorized to alter the database.',
     };
   }
 
@@ -150,7 +150,7 @@ try{
   // `;
 }catch (error) {
   return {
-    message: 'Database Error: Failed to Create Drill.',
+    message: 'Error: You are not authorized to alter the database.',
   };
 }
 }
@@ -186,7 +186,7 @@ export async function updateDrill(formData: FormData) {
   // `;
 }catch (error) {
   return {
-    message: 'Database Error: Failed to Update Drill.',
+    message: 'Error: You are not authorized to alter the database.',
   };
 }
 }
