@@ -51,6 +51,7 @@ export default async function EditSkillForm({
                                 name="name"
                                 type="string"
                                 defaultValue={skill.name}
+                                required
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />
                         </div>
@@ -138,6 +139,7 @@ export default async function EditSkillForm({
                                 id="videoLink"
                                 name="videoLink"
                                 type="string"
+                                defaultValue={skill.videoLink}
                                 placeholder="Enter a url"
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />

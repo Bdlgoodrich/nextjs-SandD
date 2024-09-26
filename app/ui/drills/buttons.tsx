@@ -16,7 +16,7 @@ export function CreateDrill() {
 export function UpdateDrill({ id }: { id: number }) {
   return (
     <Link
-      href="/home/drills/update"
+      href="/home/drills/[id]/edit"
       className="rounded-md border p-2 hover:bg-gray-100"
     >
       <PencilIcon className="w-5" />
