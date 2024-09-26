@@ -131,7 +131,7 @@ export default async function EditSkillForm({
                 {/* Skill Video Link */}
                 <div className="mb-4">
                     <label htmlFor="skill video link" className="mb-2 block text-sm font-medium">
-                        Skill Video Link
+                        Skill Video Link (optional)
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">

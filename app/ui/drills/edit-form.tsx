@@ -9,7 +9,7 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
     return (
         <form>
             <input type="hidden" id="name" name="id" value={drill.id} />
-            
+
             <div className="rounded-md bg-gray-50 p-4 md:p-6">
 
                 {/* Skill */}
@@ -24,8 +24,8 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
                             className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             aria-describedby="skill-error"
                         >
-                            <option value="" disabled>
-                                select a skill
+                            <option key='default' value='default'>
+                                {drill.skill}
                             </option>
                             {skills.map((skill) => (
                                 <option key={skill.id} value={skill.id}>
@@ -87,7 +87,7 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
                                             id={apparatus.name}
                                             name={apparatus.name}
                                             type="checkbox"
-                                            key={apparatus.id}   
+                                            key={apparatus.id}
                                         />
                                     </label>
                                 </section>
@@ -117,7 +117,7 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
                 {/* Drill Video Link */}
                 <div className="mb-4">
                     <label htmlFor="drill video link" className="mb-2 block text-sm font-medium">
-                        Drill Video Link
+                        Drill Video Link (optional)
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">

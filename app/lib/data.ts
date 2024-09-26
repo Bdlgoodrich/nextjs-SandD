@@ -330,7 +330,7 @@ export async function fetchDrillById(id: string) {
     const data = await sql<Drill>`
       SELECT *
       FROM drills
-      WHERE drill.id = ${id};
+      WHERE id = ${id};
     `;
 
     const drills = data.rows.map((drill) => ({

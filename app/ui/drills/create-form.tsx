@@ -46,6 +46,7 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
                                 name="description"
                                 type="string"
                                 placeholder="Enter the drill description"
+                                required
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />
                         </div>
@@ -55,7 +56,7 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
                 {/* Drill Instructions */}
                 <div className="mb-4">
                     <label htmlFor="instructions" className="mb-2 block text-sm font-medium">
-                        Write any instructions for the drill
+                        Write any additional instructions for the drill
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
@@ -63,7 +64,7 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
                                 id="instructions"
                                 name="instructions"
                                 type="string"
-                                placeholder='instructions'
+                                placeholder='Enter the drill instructions'
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />
                         </div>
@@ -105,6 +106,8 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
                                 id="equipment"
                                 name="equipment"
                                 type="string"
+                                placeholder='Enter any additional equipment needed'
+                                required
                                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             />
                         </div>
@@ -114,7 +117,7 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
                 {/* Drill Video Link */}
                 <div className="mb-4">
                     <label htmlFor="drill video link" className="mb-2 block text-sm font-medium">
-                        Drill Video Link
+                        Drill Video Link (optional)
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
