@@ -140,7 +140,7 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
                 >
                     Cancel
                 </Link>
-                <Button type="submit">Create Drill</Button>
+                <Button type="submit">Update Drill</Button>
             </div>
         </form>
     );

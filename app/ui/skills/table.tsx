@@ -57,13 +57,13 @@ export default async function SkillsTable({
                 >
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex items-center gap-3">
-                      <p><strong>{skill.name}</strong></p>
+                      <a href={`/home/skills/${skill.id}`}><strong>{skill.name}</strong></a>
                     </div>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-wrap px-3 py-3">
                     {skill.apparatus}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-wrap px-3 py-3">
                     {skill.course}
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
