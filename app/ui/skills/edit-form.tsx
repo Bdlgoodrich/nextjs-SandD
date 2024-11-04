@@ -18,19 +18,10 @@ export default async function EditSkillForm({
     const apparatusIsChecked: boolean[] = apparatuses.map((appa) => (
         skill.apparatus.includes(appa.name)
     ));
-    const apparatusDefault: string[] = new Array(apparatusIsChecked.length);
-    for (let i = 0; i < apparatusDefault.length; i++) {
-        apparatusIsChecked[i] ? apparatusDefault[i] = 'checked' : apparatusDefault[i] = 'unchecked';
-    }
 
     const courseIsChecked: boolean[] = courses.map((course) => (
         skill.course.includes(course.name)
     ));
-    const courseDefault: string[] = new Array(courseIsChecked.length);
-    for (let i = 0; i < courseDefault.length; i++) {
-        courseIsChecked[i] ? courseDefault[i] = 'checked' : courseDefault[i] = 'unchecked';
-    }
-
 
     return (
         <form action={updateSkill}>
@@ -83,17 +74,15 @@ export default async function EditSkillForm({
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
-                            {apparatuses.map((apparatus) => (
-                                <section>
+                            {apparatuses.map((apparatus, index) => (
+                                <section key={apparatus.id}>
                                     <label htmlFor={apparatus.name} className="mb-2 block text-sm font-medium">
                                         {apparatus.name}
                                         <input
                                             id={apparatus.name}
                                             name={apparatus.name}
                                             type="checkbox"
-                                            defaultValue={apparatusDefault[apparatus.id]}
-                                            key={apparatus.id}
-
+                                            defaultChecked={apparatusIsChecked[index]}
                                         />
                                     </label>
                                 </section>
@@ -109,16 +98,15 @@ export default async function EditSkillForm({
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
-                            {courses.map((course) => (
-                                <section>
+                            {courses.map((course, index) => (
+                                <section key={course.id}>
                                     <label htmlFor={course.name} className="mb-2 block text-sm font-medium">
                                         {course.name}
                                         <input
                                             type="checkbox"
-                                            key={course.id}
                                             id={course.name}
                                             name={course.name}
-                                            defaultValue={courseDefault[course.id]}
+                                            defaultChecked={courseIsChecked[index]}
                                         />
                                     </label>
                                 </section>

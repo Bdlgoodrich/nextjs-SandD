@@ -6,6 +6,11 @@ import { fetchApparatuses, fetchSkills } from '@/app/lib/data';
 export default async function EditDrillsForm({ drill }: { drill: Drill }) {
     const apparatuses = await fetchApparatuses();
     const skills = await fetchSkills();
+
+    const apparatusIsChecked: boolean[] = apparatuses.map((appa) => (
+        drill.apparatus.includes(appa.name)
+    ));
+
     return (
         <form>
             <input type="hidden" id="name" name="id" value={drill.id} />
@@ -79,15 +84,15 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
-                            {apparatuses.map((apparatus) => (
-                                <section>
+                            {apparatuses.map((apparatus, index) => (
+                                <section key={apparatus.id}>
                                     <label htmlFor={apparatus.name} className="mb-2 block text-sm font-medium">
                                         {apparatus.name}
                                         <input
                                             id={apparatus.name}
                                             name={apparatus.name}
                                             type="checkbox"
-                                            key={apparatus.id}
+                                            defaultChecked={apparatusIsChecked[index]}                                            
                                         />
                                     </label>
                                 </section>
