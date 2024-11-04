@@ -10,8 +10,8 @@
           <p>On the left is a navigation panel.</p>
           <p>Apparatuses will bring up a list of all apparatuses currently in this application along with a brief description.</p>
           <p>Skills will bring up a searchable list of all skills currently in this appication.<br></br>You can click on a skill to see its details.</p>
-          <p>Drills will bring up a searchable list of all drills currently in this application. You can search based on any property (skill, description, instructions, apparatus, or equipment).
-            You can click on a drill's description to see its other details.</p>
+          <p>Drills will bring up a searchable list of all drills currently in this application. <br></br>You can search based on any property (skill, description, instructions, apparatus, or equipment).
+            <br></br>You can click on a drill's description to see its other details.</p>
           <p>Classes will bring up a list of all classes currently in this application along with a brief description and age range.</p>
         </div>
       </main>
