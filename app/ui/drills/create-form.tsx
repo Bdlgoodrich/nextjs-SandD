@@ -2,12 +2,13 @@ import { Drill } from '@/app/lib/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { fetchApparatuses, fetchSkills } from '@/app/lib/data';
+import { createDrill } from '@/app/lib/actions';
 
 export default async function DrillsForm({ drills }: { drills: Drill[] }) {
     const apparatuses = await fetchApparatuses();
     const skills = await fetchSkills();
     return (
-        <form>
+        <form action={createDrill}>
             <div className="rounded-md bg-gray-50 p-4 md:p-6">
 
                 {/* Skill */}
@@ -26,7 +27,7 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
                                 select a skill
                             </option>
                             {skills.map((skill) => (
-                                <option key={skill.id} value={skill.id}>
+                                <option key={skill.id} value={skill.name}>
                                     {skill.name}
                                 </option>
                             ))}
@@ -79,14 +80,13 @@ export default async function DrillsForm({ drills }: { drills: Drill[] }) {
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
                             {apparatuses.map((apparatus) => (
-                                <section>
+                                <section key={apparatus.id} >
                                     <label htmlFor={apparatus.name} className="mb-2 block text-sm font-medium">
                                         {apparatus.name}
                                         <input
                                             id={apparatus.name}
                                             name={apparatus.name}
                                             type="checkbox"
-                                            key={apparatus.id}   
                                         />
                                     </label>
                                 </section>

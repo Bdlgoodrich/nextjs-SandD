@@ -142,7 +142,7 @@ export default async function EditSkillForm({
                     >
                         Cancel
                     </Link>
-                    <Button type="submit">Edit Skill</Button>
+                    <Button type="submit">Update Skill</Button>
                 </div>
 
             </div>

@@ -2,6 +2,7 @@ import { Drill } from '@/app/lib/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { fetchApparatuses, fetchSkills } from '@/app/lib/data';
+import { updateDrill } from '@/app/lib/actions';
 
 export default async function EditDrillsForm({ drill }: { drill: Drill }) {
     const apparatuses = await fetchApparatuses();
@@ -12,7 +13,7 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
     ));
 
     return (
-        <form>
+        <form action={updateDrill}>
             <input type="hidden" id="name" name="id" value={drill.id} />
 
             <div className="rounded-md bg-gray-50 p-4 md:p-6">
@@ -29,11 +30,11 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
                             className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             aria-describedby="skill-error"
                         >
-                            <option key='default' value='default'>
+                            <option key='default' value={drill.skill}>
                                 {drill.skill}
                             </option>
                             {skills.map((skill) => (
-                                <option key={skill.id} value={skill.id}>
+                                <option key={skill.id} value={skill.name}>
                                     {skill.name}
                                 </option>
                             ))}

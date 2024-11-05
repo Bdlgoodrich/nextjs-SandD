@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         breadcrumbs={[
           { label: 'Drills', href: '/home/drills' },
           {
-            label: 'Edit Drills',
+            label: 'Edit Drill',
             href: `/home/drills/${id}/edit`,
             active: true,
           },
