@@ -64,10 +64,10 @@ export default async function DrillsTable({
                       <p>{drill.skill}</p>
                     </div>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-wrap px-3 py-3">
                     {drill.apparatus}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-wrap px-3 py-3">
                     {drill.description}
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">

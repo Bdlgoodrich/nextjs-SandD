@@ -2,12 +2,13 @@ import { Drill } from '@/app/lib/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { fetchApparatuses, fetchSkills } from '@/app/lib/data';
+import { updateDrill } from '@/app/lib/actions';
 
 export default async function EditDrillsForm({ drill }: { drill: Drill }) {
     const apparatuses = await fetchApparatuses();
     const skills = await fetchSkills();
     return (
-        <form>
+        <form action={updateDrill}>
             <input type="hidden" id="name" name="id" value={drill.id} />
 
             <div className="rounded-md bg-gray-50 p-4 md:p-6">

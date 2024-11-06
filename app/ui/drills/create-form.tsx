@@ -2,12 +2,13 @@ import { Drill } from '@/app/lib/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { fetchApparatuses, fetchSkills } from '@/app/lib/data';
+import { createDrill } from '@/app/lib/actions';
 
 export default async function DrillsForm({ drills }: { drills: Drill[] }) {
     const apparatuses = await fetchApparatuses();
     const skills = await fetchSkills();
     return (
-        <form>
+        <form action={createDrill}>
             <div className="rounded-md bg-gray-50 p-4 md:p-6">
 
                 {/* Skill */}

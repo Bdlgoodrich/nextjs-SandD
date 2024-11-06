@@ -60,10 +60,10 @@ export default async function SkillsTable({
                       <p><strong>{skill.name}</strong></p>
                     </div>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-wrap px-3 py-3">
                     {skill.apparatus}
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  <td className="whitespace-wrap px-3 py-3">
                     {skill.course}
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
