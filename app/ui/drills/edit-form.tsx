@@ -7,6 +7,11 @@ import { updateDrill } from '@/app/lib/actions';
 export default async function EditDrillsForm({ drill }: { drill: Drill }) {
     const apparatuses = await fetchApparatuses();
     const skills = await fetchSkills();
+
+    const apparatusIsChecked: boolean[] = apparatuses.map((appa) => (
+        drill.apparatus.includes(appa.name)
+    ));
+
     return (
         <form action={updateDrill}>
             <input type="hidden" id="name" name="id" value={drill.id} />
@@ -25,11 +30,11 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
                             className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                             aria-describedby="skill-error"
                         >
-                            <option key='default' value='default'>
+                            <option key='default' value={drill.skill}>
                                 {drill.skill}
                             </option>
                             {skills.map((skill) => (
-                                <option key={skill.id} value={skill.id}>
+                                <option key={skill.id} value={skill.name}>
                                     {skill.name}
                                 </option>
                             ))}
@@ -80,15 +85,15 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
-                            {apparatuses.map((apparatus) => (
-                                <section>
+                            {apparatuses.map((apparatus, index) => (
+                                <section key={apparatus.id}>
                                     <label htmlFor={apparatus.name} className="mb-2 block text-sm font-medium">
                                         {apparatus.name}
                                         <input
                                             id={apparatus.name}
                                             name={apparatus.name}
                                             type="checkbox"
-                                            key={apparatus.id}
+                                            defaultChecked={apparatusIsChecked[index]}                                            
                                         />
                                     </label>
                                 </section>
@@ -141,7 +146,7 @@ export default async function EditDrillsForm({ drill }: { drill: Drill }) {
                 >
                     Cancel
                 </Link>
-                <Button type="submit">Create Drill</Button>
+                <Button type="submit">Update Drill</Button>
             </div>
         </form>
     );
