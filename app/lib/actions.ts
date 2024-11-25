@@ -198,6 +198,87 @@ export async function updateDrill(formData: FormData) {
   redirect('/home/drills');
 }
 
+const GameFormSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  instructions: z.string(),
+  apparatus: z.string(),
+  equipment: z.string(),
+});
+
+const CreateGame = GameFormSchema.omit({ id: true });
+
+export async function createGame(formData: FormData) {
+  const apparatusNames = await fetchApparatusNames();
+  let apparatuses = "";
+  apparatusNames.map((name) => {
+    const status = formData.get(`${name}`);
+    if (status === "on") apparatuses += `${name}, `;
+  })
+  let lastComma = apparatuses.lastIndexOf(',');
+  const formattedApparatuses = apparatuses.slice(0, lastComma);
+
+  const { name, instructions, apparatus, equipment } = CreateGame.parse({
+    name: formData.get('name'),
+    instructions: formData.get('instructions'),
+    apparatus: formattedApparatuses,
+    equipment: formData.get('equipment'),
+    videoLink: formData.get('videoLink')
+  });
+
+  try {
+    await sql`
+    INSERT INTO games (name, instructions, apparatus, equipment)
+    VALUES (${name}, ${instructions}, ${apparatus}, ${equipment} )
+  `;
+  } catch (error) {
+    return {
+      message: 'Error: You are not authorized to alter the database.',
+    };
+  }
+
+  revalidatePath('/home/games');
+  redirect('/home/games');
+}
+
+const UpdateGame = GameFormSchema;
+
+export async function updateGame(formData: FormData) {
+  const apparatusNames = await fetchApparatusNames();
+  let apparatuses = "";
+  apparatusNames.map((name) => {
+    const status = formData.get(`${name}`);
+    if (status === "on") apparatuses += `${name}, `;
+  })
+  let lastComma = apparatuses.lastIndexOf(',');
+  const formattedApparatuses = apparatuses.slice(0, lastComma);
+
+  const { id, name, instructions, apparatus, equipment} = UpdateGame.parse({
+    id: formData.get('id'),
+    name: formData.get('name'),
+    instructions: formData.get('instructions'),
+    apparatus: formattedApparatuses,
+    equipment: formData.get('equipment'),
+  });
+
+  try {
+    await sql`
+      UPDATE games
+      SET name=${name}, instructions=${instructions}, apparatus=${apparatus}, equipment=${equipment}
+      WHERE id = ${id}
+  `;
+  } catch (error) {
+    return {
+      message: 'Error: You are not authorized to alter the database.',
+    };
+  }
+
+  revalidatePath('/home/games');
+  redirect('/home/games');
+}
+
+
+
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,

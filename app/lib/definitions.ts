@@ -44,6 +44,15 @@ export type Apparatus = {
   imageLink: string;
 }
 
+export type Game = {
+  id: number;
+  name: string;
+  instructions: string;
+  apparatus: string;
+  equipment: string;
+  videoLink: string;
+}
+
 export type Equipment = {
   id: number;
   name: string;

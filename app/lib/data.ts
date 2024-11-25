@@ -5,6 +5,7 @@ import {
   Drill,
   Apparatus,
   Course,
+  Game,
 } from './definitions';
 import { formatLink } from './utils';
 
@@ -344,3 +345,65 @@ export async function fetchDrillById(id: string) {
   }
 }
 
+
+export async function fetchFilteredGames(query: string, currentPage: number) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+  try {
+    const data = await sql<Game>`
+		SELECT *
+		FROM games
+    WHERE
+      TRIM(name) ILIKE ${`%${query}%`} OR
+      TRIM(description) ILIKE ${`%${query}%`} OR
+
+      ORDER BY name ASC
+      LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+	  `;
+
+    return data.rows.map((result) => ({
+      ...result,
+    }));
+
+    //return drills;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch filtered drills.');
+  }
+}
+
+export async function fetchGamesPages(query: string) {
+  try {
+    const count = await sql`
+    SELECT COUNT(*)
+    FROM games
+    WHERE
+      TRIM(name) ILIKE ${`%${query}%`} OR
+      TRIM(description) ILIKE ${`%${query}%`}
+  `;
+
+    const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of drills.');
+  }
+}
+
+export async function fetchGameById(id: string) {
+  // try {
+  //   const data = await sql<Game>`
+  //     SELECT *
+  //     FROM games
+  //     WHERE id = ${id};
+  //   `;
+
+  //   const games = data.rows.map((drill) => ({
+  //     ...game,
+  //   }));
+
+  //   return games[0];
+  // } catch (error) {
+  //   console.error('Database Error:', error);
+  //   throw new Error('Failed to fetch drill.');
+  // }
+}
