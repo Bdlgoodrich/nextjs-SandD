@@ -46,10 +46,12 @@ export async function createSkill(formData: FormData) {
   const lowercaseName = name.toLowerCase();
 
   try {
+
     await sql`
     INSERT INTO skills (name, description, apparatus, course)
     VALUES (${lowercaseName}, ${description}, ${apparatus}, ${course})
   `;
+
   } catch (error) {
     return {
       message: 'Error: You are not authorized to alter the database.',
@@ -160,6 +162,7 @@ export async function createDrill(formData: FormData) {
 
 const UpdateDrill = DrillFormSchema;
 
+
 export async function updateDrill(formData: FormData) {
   const apparatusNames = await fetchApparatusNames();
   let apparatuses = "";
@@ -181,6 +184,7 @@ export async function updateDrill(formData: FormData) {
     purpose: 'learning',
     videoLink: formData.get('videoLink')
   });
+
 
   try {
     await sql`
@@ -278,7 +282,6 @@ export async function updateGame(formData: FormData) {
 }
 
 
-
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
@@ -297,3 +300,4 @@ export async function authenticate(
     throw error;
   }
 }
+
