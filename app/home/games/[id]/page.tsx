@@ -1,26 +1,26 @@
-import SkillForm from '@/app/ui/skills/form';
+import GameForm from '@/app/ui/games/form';
 import Breadcrumbs from '@/app/ui/skills/breadcrumbs';
-import { fetchSkillById } from '@/app/lib/data';
+import { fetchGameById } from '@/app/lib/data';
  
 export default async function Page({ params }: { params: { id: string } }) {
     const id = params.id;
-    const [skill] = await Promise.all([
-        fetchSkillById(id)
+    const [game] = await Promise.all([
+        fetchGameById(id)
       ]);
  
   return (
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Skills', href: '/home/skills' },
+          { label: 'Games', href: '/home/games' },
           {
-            label: 'Skill',
-            href: `/home/skills/${id}`,
+            label: 'Game',
+            href: `/home/games/${id}`,
             active: true,
           },
         ]}
       />
-      <SkillForm skill={skill} />
+      <GameForm game = {game} />
     </main>
   );
 }

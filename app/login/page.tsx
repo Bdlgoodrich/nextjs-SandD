@@ -1,5 +1,6 @@
 import AcmeLogo from '@/app/ui/acme-logo';
 import LoginForm from '@/app/ui/login-form';
+import { lusitana } from '../ui/fonts';
  
 export default function LoginPage() {
   return (
@@ -11,7 +12,12 @@ export default function LoginPage() {
           </div>
         </div>
         <LoginForm />
-      </div>
+
+      <p className="mb-3 mt-5 block text-xs font-medium text-gray-900">
+        Guest Email: guest@email.com<br></br>
+        Guest Password: password123
+      </p>
+            </div>
     </main>
   );
 }

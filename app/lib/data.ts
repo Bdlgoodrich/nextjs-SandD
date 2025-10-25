@@ -354,7 +354,9 @@ export async function fetchFilteredGames(query: string, currentPage: number) {
 		FROM games
     WHERE
       TRIM(name) ILIKE ${`%${query}%`} OR
-      TRIM(description) ILIKE ${`%${query}%`} OR
+      TRIM(instructions) ILIKE ${`%${query}%`} OR
+      TRIM(apparatuses) ILIKE ${`%${query}%`} OR 
+      TRIM(equipment) ILIKE ${`%${query}%`}
 
       ORDER BY name ASC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
@@ -378,7 +380,9 @@ export async function fetchGamesPages(query: string) {
     FROM games
     WHERE
       TRIM(name) ILIKE ${`%${query}%`} OR
-      TRIM(description) ILIKE ${`%${query}%`}
+      TRIM(instructions) ILIKE ${`%${query}%`} OR
+      TRIM(apparatuses) ILIKE ${`%${query}%`} OR
+      TRIM(equipment) ILIKE ${`%${query}%`}
   `;
 
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
@@ -390,20 +394,20 @@ export async function fetchGamesPages(query: string) {
 }
 
 export async function fetchGameById(id: string) {
-  // try {
-  //   const data = await sql<Game>`
-  //     SELECT *
-  //     FROM games
-  //     WHERE id = ${id};
-  //   `;
+  try {
+    const data = await sql<Game>`
+      SELECT *
+      FROM games
+      WHERE id = ${id};
+    `;
 
-  //   const games = data.rows.map((drill) => ({
-  //     ...game,
-  //   }));
+    const games = data.rows.map((game) => ({
+      ...game,
+    }));
 
-  //   return games[0];
-  // } catch (error) {
-  //   console.error('Database Error:', error);
-  //   throw new Error('Failed to fetch drill.');
-  // }
+    return games[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch drill.');
+  }
 }

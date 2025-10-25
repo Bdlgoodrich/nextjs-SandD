@@ -54,6 +54,19 @@ export default async function GameForm({
                         </p>
                     </div>
                 </div>
+
+                
+                {/* Game Equipment */}
+                <div className="mb-4">
+                    <label htmlFor="equipment" className="mb-2 block text-sm font-medium">
+                        <strong>Required Equipment</strong>
+                    </label>
+                    <div className="relative mt-2 rounded-md">
+                        <p className="relative">
+                           {game.equipment} 
+                        </p>
+                    </div>
+                </div>
                 
                 {/* Skill Video Link REMOVED UNTIL IMPLEMENTED
 
