@@ -45,18 +45,18 @@ export async function createSkill(formData: FormData) {
 
   const lowercaseName = name.toLowerCase();
 
-  try {
+  // try {
 
-    await sql`
-    INSERT INTO skills (name, description, apparatus, course)
-    VALUES (${lowercaseName}, ${description}, ${apparatus}, ${course})
-  `;
+  //   await sql`
+  //   INSERT INTO skills (name, description, apparatus, course)
+  //   VALUES (${lowercaseName}, ${description}, ${apparatus}, ${course})
+  // `;
 
-  } catch (error) {
-    return {
-      message: 'Error: You are not authorized to alter the database.',
-    };
-  }
+  // } catch (error) {
+  //   return {
+  //     message: 'Error: You are not authorized to alter the database.',
+  //   };
+  // }
 
   revalidatePath('/home/skills');
   redirect('/home/skills');
@@ -93,17 +93,17 @@ export async function updateSkill(formData: FormData) {
   });
 
   const lowercaseName = name.toLowerCase();
-  try {
-    await sql`
-      UPDATE skills
-      SET name=${lowercaseName}, description=${description}, apparatus=${apparatus}, course=${course}
-      WHERE id = ${id}
-    `;
-  } catch (error) {
-    return {
-      message: 'Error: You are not authorized to alter the database.',
-    };
-  }
+  // try {
+  //   await sql`
+  //     UPDATE skills
+  //     SET name=${lowercaseName}, description=${description}, apparatus=${apparatus}, course=${course}
+  //     WHERE id = ${id}
+  //   `;
+  // } catch (error) {
+  //   return {
+  //     message: 'Error: You are not authorized to alter the database.',
+  //   };
+  // }
 
   revalidatePath('/home/skills');
   redirect('/home/skills');
@@ -145,16 +145,16 @@ export async function createDrill(formData: FormData) {
     videoLink: formData.get('videoLink')
   });
 
-  try {
-    await sql`
-    INSERT INTO drills (skill, description, instructions, apparatus, equipment, purpose, videolink)
-    VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
-  `;
-  } catch (error) {
-    return {
-      message: 'Error: You are not authorized to alter the database.',
-    };
-  }
+  // try {
+  //   await sql`
+  //   INSERT INTO drills (skill, description, instructions, apparatus, equipment, purpose, videolink)
+  //   VALUES (${skill}, ${description}, ${instructions}, ${apparatus}, ${equipment}, ${purpose}, ${videoLink})
+  // `;
+  // } catch (error) {
+  //   return {
+  //     message: 'Error: You are not authorized to alter the database.',
+  //   };
+  // }
 
   revalidatePath('/home/drills');
   redirect('/home/drills');
@@ -186,17 +186,17 @@ export async function updateDrill(formData: FormData) {
   });
 
 
-  try {
-    await sql`
-      UPDATE drills
-      SET skill=${skill}, description=${description}, instructions=${instructions}, apparatus=${apparatus}, equipment=${equipment}, purpose=${purpose}, videoLink=${videoLink}
-      WHERE id = ${id}
-  `;
-  } catch (error) {
-    return {
-      message: 'Error: You are not authorized to alter the database.',
-    };
-  }
+  // try {
+  //   await sql`
+  //     UPDATE drills
+  //     SET skill=${skill}, description=${description}, instructions=${instructions}, apparatus=${apparatus}, equipment=${equipment}, purpose=${purpose}, videoLink=${videoLink}
+  //     WHERE id = ${id}
+  // `;
+  // } catch (error) {
+  //   return {
+  //     message: 'Error: You are not authorized to alter the database.',
+  //   };
+  // }
 
   revalidatePath('/home/drills');
   redirect('/home/drills');
@@ -230,16 +230,16 @@ export async function createGame(formData: FormData) {
     videoLink: formData.get('videoLink')
   });
 
-  try {
-    await sql`
-    INSERT INTO games (name, instructions, apparatus, equipment)
-    VALUES (${name}, ${instructions}, ${apparatus}, ${equipment} )
-  `;
-  } catch (error) {
-    return {
-      message: 'Error: You are not authorized to alter the database.',
-    };
-  }
+  // try {
+  //   await sql`
+  //   INSERT INTO games (name, instructions, apparatus, equipment)
+  //   VALUES (${name}, ${instructions}, ${apparatus}, ${equipment} )
+  // `;
+  // } catch (error) {
+  //   return {
+  //     message: 'Error: You are not authorized to alter the database.',
+  //   };
+  // }
 
   revalidatePath('/home/games');
   redirect('/home/games');
@@ -265,17 +265,17 @@ export async function updateGame(formData: FormData) {
     equipment: formData.get('equipment'),
   });
 
-  try {
-    await sql`
-      UPDATE games
-      SET name=${name}, instructions=${instructions}, apparatus=${apparatus}, equipment=${equipment}
-      WHERE id = ${id}
-  `;
-  } catch (error) {
-    return {
-      message: 'Error: You are not authorized to alter the database.',
-    };
-  }
+  // try {
+  //   await sql`
+  //     UPDATE games
+  //     SET name=${name}, instructions=${instructions}, apparatus=${apparatus}, equipment=${equipment}
+  //     WHERE id = ${id}
+  // `;
+  // } catch (error) {
+  //   return {
+  //     message: 'Error: You are not authorized to alter the database.',
+  //   };
+  // }
 
   revalidatePath('/home/games');
   redirect('/home/games');

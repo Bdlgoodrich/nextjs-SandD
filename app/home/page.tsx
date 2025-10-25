@@ -4,7 +4,7 @@
     return (
       <main>
         <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
-          Welcome to SandD.<br></br>Login is temporarily disabled<br></br>Skill, Drill, and Game additions will not be logged.
+          Welcome to SandD.<br></br>You are logged in as a guest.<br></br>Additions and updates will not be saved.
         </h1>
         <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-1">
           <p>On the left is a navigation panel.</p>
