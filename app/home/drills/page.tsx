@@ -1,4 +1,4 @@
-import Pagination from '@/app/ui/skills/pagination';
+import Pagination from '@/app/ui/shared/pagination';
 import Search from '@/app/ui/search';
 import { CreateDrill } from '@/app/ui/drills/buttons';
 import { lusitana } from '@/app/ui/fonts';

@@ -1,4 +1,4 @@
-import Pagination from '@/app/ui/skills/pagination';
+import Pagination from '@/app/ui/shared/pagination';
 import Search from '@/app/ui/search';
 import { CreateSkill } from '@/app/ui/skills/buttons';
 import { lusitana } from '@/app/ui/fonts';

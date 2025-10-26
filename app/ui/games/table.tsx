@@ -54,7 +54,7 @@ export default async function GamesTable({
                 >
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex items-center gap-3">
-                      <a href={`/home/skills/${game.id}`}><strong>{game.name}</strong></a>
+                      <a href={`/home/games/${game.id}`}><strong>{game.name}</strong></a>
                     </div>
                   </td>
                   <td className="whitespace-wrap px-3 py-3">

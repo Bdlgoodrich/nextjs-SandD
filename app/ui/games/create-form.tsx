@@ -72,6 +72,25 @@ export default async function GamesForm({ games }: { games: Game[] }) {
                     </div>
                 </div>
 
+                                {/* Drill Equipment */}
+                <div className="mb-4">
+                    <label htmlFor="equipment" className="mb-2 block text-sm font-medium">
+                        List all additional required equipment, separated by commas
+                    </label>
+                    <div className="relative mt-2 rounded-md">
+                        <div className="relative">
+                            <input
+                                id="equipment"
+                                name="equipment"
+                                type="string"
+                                placeholder='Enter any additional equipment needed'
+                                required
+                                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                            />
+                        </div>
+                    </div>
+                </div>
+
                 {/* Game Video Link */}
                 <div className="mb-4">
                     <label htmlFor="skill video link" className="mb-2 block text-sm font-medium">
