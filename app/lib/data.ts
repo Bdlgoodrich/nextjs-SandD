@@ -174,11 +174,12 @@ export async function fetchEventApparatusNames() {
   }
 }
 
-export async function fetchSkills() {
+export async function fetchSkillsList() {
   try {
     const data = await sql<Skill>`
         SELECT *
-        FROM skills;
+        FROM skills
+        ORDER BY skills.name ASC;
       `;
 
     const skills = data.rows.map((skill) => ({
@@ -345,6 +346,23 @@ export async function fetchDrillById(id: string) {
   }
 }
 
+
+export async function fetchGames() {
+  try {
+    const data = await sql<Game>`
+		SELECT *
+		FROM games;
+	  `;
+
+    return data.rows.map((game) => ({
+      ...game,
+    }));
+
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch filtered games.');
+  }
+}
 
 export async function fetchFilteredGames(query: string, currentPage: number) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;

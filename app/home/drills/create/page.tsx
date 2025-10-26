@@ -1,5 +1,5 @@
 import DrillsForm from '@/app/ui/drills/create-form';
-import Breadcrumbs from '@/app/ui/skills/breadcrumbs';
+import Breadcrumbs from '@/app/ui/shared/breadcrumbs';
 import { fetchDrills } from '@/app/lib/data';
  
 export default async function Page() {

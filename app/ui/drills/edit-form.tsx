@@ -1,12 +1,12 @@
 import { Drill } from '@/app/lib/definitions';
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
-import { fetchApparatuses, fetchSkills } from '@/app/lib/data';
+import { fetchApparatuses, fetchSkillsList } from '@/app/lib/data';
 import { updateDrill } from '@/app/lib/actions';
 
 export default async function EditDrillsForm({ drill }: { drill: Drill }) {
     const apparatuses = await fetchApparatuses();
-    const skills = await fetchSkills();
+    const skills = await fetchSkillsList();
 
     const apparatusIsChecked: boolean[] = apparatuses.map((appa) => (
         drill.apparatus.includes(appa.name)

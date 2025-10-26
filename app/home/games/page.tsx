@@ -1,4 +1,4 @@
-import Pagination from '@/app/ui/skills/pagination';
+import Pagination from '@/app/ui/games/pagination';
 import Search from '@/app/ui/search';
 import { CreateGame } from '@/app/ui/games/buttons';
 import { lusitana } from '@/app/ui/fonts';

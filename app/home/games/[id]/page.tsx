@@ -1,5 +1,5 @@
 import GameForm from '@/app/ui/games/form';
-import Breadcrumbs from '@/app/ui/skills/breadcrumbs';
+import Breadcrumbs from '@/app/ui/games/breadcrumbs';
 import { fetchGameById } from '@/app/lib/data';
  
 export default async function Page({ params }: { params: { id: string } }) {
