@@ -3,7 +3,7 @@ import Search from '@/app/ui/search';
 import { CreateGame } from '@/app/ui/games/buttons';
 import { lusitana } from '@/app/ui/fonts';
 import { fetchGamesPages } from '@/app/lib/data';
-import GamesTable from '@/app/ui/skills/table';
+import GamesTable from '@/app/ui/games/table';
  
   export default async function Page({
     searchParams,

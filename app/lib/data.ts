@@ -355,21 +355,20 @@ export async function fetchFilteredGames(query: string, currentPage: number) {
     WHERE
       TRIM(name) ILIKE ${`%${query}%`} OR
       TRIM(instructions) ILIKE ${`%${query}%`} OR
-      TRIM(apparatuses) ILIKE ${`%${query}%`} OR 
+      TRIM(apparatus) ILIKE ${`%${query}%`} OR 
       TRIM(equipment) ILIKE ${`%${query}%`}
 
       ORDER BY name ASC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
 	  `;
 
-    return data.rows.map((result) => ({
-      ...result,
+    return data.rows.map((game) => ({
+      ...game,
     }));
 
-    //return drills;
   } catch (err) {
     console.error('Database Error:', err);
-    throw new Error('Failed to fetch filtered drills.');
+    throw new Error('Failed to fetch filtered games.');
   }
 }
 
@@ -379,17 +378,22 @@ export async function fetchGamesPages(query: string) {
     SELECT COUNT(*)
     FROM games
     WHERE
-      TRIM(name) ILIKE ${`%${query}%`} OR
-      TRIM(instructions) ILIKE ${`%${query}%`} OR
-      TRIM(apparatuses) ILIKE ${`%${query}%`} OR
-      TRIM(equipment) ILIKE ${`%${query}%`}
+      games.name ILIKE ${`%${query}%`} OR
+      games.instructions ILIKE ${`%${query}%`} OR
+      games.apparatus ILIKE ${`%${query}%`} OR
+      games.equipment ILIKE ${`%${query}%`}
   `;
+
+      // TRIM(name) ILIKE ${`%${query}%`} OR
+      // TRIM(instructions) ILIKE ${`%${query}%`} OR
+      // TRIM(apparatus) ILIKE ${`%${query}%`} OR
+      // TRIM(equipment) ILIKE ${`%${query}%`}
 
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch total number of drills.');
+    throw new Error('Failed to fetch total number of games.');
   }
 }
 
@@ -408,6 +412,6 @@ export async function fetchGameById(id: string) {
     return games[0];
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch drill.');
+    throw new Error('Failed to fetch game.');
   }
 }

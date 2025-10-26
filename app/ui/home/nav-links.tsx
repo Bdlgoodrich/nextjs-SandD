@@ -16,6 +16,7 @@ const links = [
   { name: 'Apparatuses', href: '/home/apparatuses', icon: Bars4Icon, },
   { name: 'Skills', href: '/home/skills', icon: Bars4Icon, },
   { name: 'Drills', href: '/home/drills', icon: Bars4Icon, },
+  { name: 'Games', href: '/home/games', icon: Bars4Icon, },
   { name: 'Classes', href: '/home/classes', icon: UserGroupIcon, },
 ];
 
